@@ -18,10 +18,10 @@ Browser extensions to analyze website security using the [Mozilla HTTP Observato
 * [sinon-chrome](https://github.com/acvetkov/sinon-chrome): Unit testing using sinon, mocha and chai
 
 ## Tasks to do
-1. Learn Chrome extensions: https://developer.chrome.com/extensions and create a basic chrome extension. : **30 Jan 2017**
-2. Transform the basic chrome extension from previous step into a React + Redux app as per [react-chrome-redux](https://github.com/tshaddix/react-chrome-redux) : **31 Jan 2017**
-3. Study the [Mozilla HTTP Observatory API Documentation](https://github.com/mozilla/http-observatory/blob/master/httpobs/docs/api.md) and create the file structure and internal API to be used for the App. : **4 Feb 2017**
-4. Style the React app using css styling from the [HTTP Observatory website](https://github.com/mozilla/http-observatory-website/tree/master/css) : **4 Feb 2017**
-5. Implement the file structure and internal API from Step 3 in React + Redux : **5 Feb 2017**
-6. Implement unit tests for the app using [sinon-chrome](https://github.com/acvetkov/sinon-chrome) : **9 Feb 2017**
-7. Publish to the [Chrome Web Store](https://developer.chrome.com/webstore/get_started_simple) : **9 Feb 2017**
+- [x] Learn Chrome extensions: https://developer.chrome.com/extensions and create a basic chrome extension. : **30 Jan 2017**
+- [ ] Transform the basic chrome extension from previous step into a React + Redux app as per [react-chrome-redux](https://github.com/tshaddix/react-chrome-redux) : **31 Jan 2017**
+- [ ] Study the [Mozilla HTTP Observatory API Documentation](https://github.com/mozilla/http-observatory/blob/master/httpobs/docs/api.md) and create the file structure and internal API to be used for the App. : **4 Feb 2017**
+- [ ] Style the React app using css styling from the [HTTP Observatory website](https://github.com/mozilla/http-observatory-website/tree/master/css) : **4 Feb 2017**
+- [ ] Implement the file structure and internal API from Step 3 in React + Redux : **5 Feb 2017**
+- [ ] Implement unit tests for the app using [sinon-chrome](https://github.com/acvetkov/sinon-chrome) : **9 Feb 2017**
+- [ ] Publish to the [Chrome Web Store](https://developer.chrome.com/webstore/get_started_simple) : **9 Feb 2017**
