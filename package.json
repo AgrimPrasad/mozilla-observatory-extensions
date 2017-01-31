@@ -1,9 +1,10 @@
 {
-  "name": "rcr-example",
+  "name": "mozilla-observatory-extensions",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "scripts": {
+    "lint": "eslint --fix --ext .jsx --ext .js src/**/*.js src/**/*.jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tyler Shaddix",
@@ -20,6 +21,11 @@
     "babel-loader": "^6.0.1",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.2.0",
     "gulp-rename": "^1.2.2",

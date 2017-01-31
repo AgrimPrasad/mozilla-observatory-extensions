@@ -3,18 +3,18 @@ const path = require('path');
 module.exports = {
 
   entry: [
-    './src/components/popup/src/scripts/index.js'
+    './src/components/popup/src/scripts/index.jsx',
   ],
 
   output: {
     filename: 'popup.js',
     path: path.join(__dirname, '../../../', 'build'),
-    publicPath: '/'
+    publicPath: '/',
   },
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.json'],
-    modulesDirectories: ['node_modules']
+    modulesDirectories: ['node_modules'],
   },
 
   module: {
@@ -25,9 +25,9 @@ module.exports = {
         exclude: /(node_modules)/,
         include: path.join(__dirname, 'src'),
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
-  }
+          presets: ['es2015', 'react'],
+        },
+      },
+    ],
+  },
 };
