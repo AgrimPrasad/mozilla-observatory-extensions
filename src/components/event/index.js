@@ -7,5 +7,5 @@ import rootReducer from './reducers';
 const store = createStore(rootReducer, {});
 
 wrapStore(store, {
-  portName: 'example',
+  portName: 'appPort',
 });

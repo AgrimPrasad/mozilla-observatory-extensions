@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 
 const proxyStore = new Store({
-  portName: 'example',
+  portName: 'appPort',
 });
 
 render(

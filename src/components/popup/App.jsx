@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as actionCreators from '../../actions/actionCreators';
 
 class App extends Component {
   componentDidMount() {
     setInterval(() => {
-      this.props.dispatch({
-        type: 'ADD_COUNT',
-      });
+      this.props.addCount(this.props.count);
     }, 1000);
   }
 
@@ -20,12 +21,14 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  count: state.count,
+  count: state.count
 });
+
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 App.propTypes = {
   count: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

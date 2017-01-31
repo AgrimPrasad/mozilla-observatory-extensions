@@ -67,7 +67,7 @@
 	var store = (0, _redux.createStore)(_reducers2.default, {});
 
 	(0, _reactChromeRedux.wrapStore)(store, {
-	  portName: 'example'
+	  portName: 'appPort'
 	});
 
 /***/ },
@@ -3015,7 +3015,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var proxyStore = new _reactChromeRedux.Store({
-	  portName: 'example'
+	  portName: 'appPort'
 	});
 
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -23263,7 +23263,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _redux = __webpack_require__(2);
+
 	var _reactRedux = __webpack_require__(231);
+
+	var _actionCreators = __webpack_require__(241);
+
+	var actionCreators = _interopRequireWildcard(_actionCreators);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23288,9 +23296,7 @@
 	      var _this2 = this;
 
 	      setInterval(function () {
-	        _this2.props.dispatch({
-	          type: 'ADD_COUNT'
-	        });
+	        _this2.props.addCount(_this2.props.count);
 	      }, 1000);
 	    }
 	  }, {
@@ -23314,12 +23320,33 @@
 	  };
 	};
 
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)(actionCreators, dispatch);
+	};
+
 	App.propTypes = {
-	  count: _react2.default.PropTypes.number,
+	  count: _react2.default.PropTypes.number.isRequired,
 	  dispatch: _react2.default.PropTypes.func.isRequired
 	};
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.addCount = addCount;
+	function addCount(count) {
+		return {
+			type: 'ADD_COUNT',
+			count: count
+		};
+	}
 
 /***/ }
 /******/ ]);

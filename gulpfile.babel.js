@@ -40,8 +40,7 @@ gulp.task('clean', (cb) => {
 gulp.task('build', ['copy-manifest', 'webpack-js', 'popup-html', 'copy-css']);
 
 gulp.task('watch', ['default'], () => {
-  gulp.watch('src/components/**/*', ['build']);
-  gulp.watch('src/css/**/*', ['build']);
+  gulp.watch('src/**/*', ['build']);
 });
 
 gulp.task('default', ['build']);
