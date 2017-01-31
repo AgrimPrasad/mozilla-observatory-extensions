@@ -11,8 +11,18 @@ Browser extensions to analyze website security using the [Mozilla HTTP Observato
 ## Architecture Design
 * Initial version is a Chrome Extension. Plan to use [react-chrome-redux](https://github.com/tshaddix/react-chrome-redux) A set of utilities for building Redux applications in Google Chrome extensions
 
-## File Layout
-* Inspired from [react-chrome-redux-examples](https://github.com/tshaddix/react-chrome-redux-examples) and [Faster-Browsing](https://github.com/sjb7/Faster-Browsing)
+## Directory structure
+* Inspired from [react-chrome-redux-examples](https://github.com/tshaddix/react-chrome-redux-examples)
+
+build
+node_modules
+src
++-- components
+	+-- event
+	+-- popup
++-- css
+tests
++-- data
 
 ## Testing
 * [sinon-chrome](https://github.com/acvetkov/sinon-chrome): Unit testing using sinon, mocha and chai
@@ -24,4 +34,4 @@ Browser extensions to analyze website security using the [Mozilla HTTP Observato
 - [ ] Style the React app using css styling from the [HTTP Observatory website](https://github.com/mozilla/http-observatory-website/tree/master/css) : **4 Feb 2017**
 - [ ] Implement the file structure and internal API from Step 3 in React + Redux : **5 Feb 2017**
 - [ ] Implement unit tests for the app using [sinon-chrome](https://github.com/acvetkov/sinon-chrome) : **9 Feb 2017**
-- [ ] Publish to the [Chrome Web Store](https://developer.chrome.com/webstore/get_started_simple) : **9 Feb 2017**
+- [ ] Publish to the [Chrome Web Store](https://developer.chrome.com/webstore/get_started_simple) Resources for programmatic deployment: [awesome-browser-extensions-and-apps](https://github.com/vitalets/awesome-browser-extensions-and-apps) : **9 Feb 2017**
