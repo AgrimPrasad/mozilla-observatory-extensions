@@ -1,23 +1,16 @@
 {
   "manifest_version": 2,
-  "name": "RCR",
-  "description": "React, Chrome, and Redux example",
-  "version": "0.0.0.1",
+  "name": "mozilla-http-observatory",
+  "description": "Analyze website security using the Mozilla HTTP Observatory API ",
+  "version": "0.0.1",
   "background": {
     "scripts": [
-      "event.js"
+      "bundle.js"
     ],
     "persistent": true
   },
   "browser_action": {
-    "default_title": "RCR Example",
+    "default_title": "Mozilla HTTP Observatory",
     "default_popup": "popup.html"
   }
-  // "content_scripts": [
-  //   {
-  //     "matches": ["*://*/*"],
-  //     "css": [],
-  //     "js": ["content.js"]
-  //   }
-  // ]
 }

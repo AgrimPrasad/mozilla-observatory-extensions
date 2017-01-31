@@ -7,7 +7,7 @@
     "lint": "eslint --fix --ext .jsx --ext .js src/**/*.js src/**/*.jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tyler Shaddix",
+  "author": "Agrim Prasad",
   "dependencies": {
     "react": "^0.14.3",
     "react-chrome-redux": "0.0.7",

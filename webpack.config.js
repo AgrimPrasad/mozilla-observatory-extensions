@@ -1,15 +1,17 @@
 const path = require('path');
 
 module.exports = {
-
+  devtool: 'source-map',
+  
   entry: [
-    './src/components/popup/src/scripts/index.jsx',
+    './src/components/event/index.js',
+    './src/components/popup/index.jsx',
   ],
 
   output: {
-    filename: 'popup.js',
-    path: path.join(__dirname, '../../../', 'build'),
-    publicPath: '/',
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'build'),
+    publicPath: '/'
   },
 
   resolve: {
