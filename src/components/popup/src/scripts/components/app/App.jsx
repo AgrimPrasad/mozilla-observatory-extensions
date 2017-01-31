@@ -12,9 +12,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Click Count: {this.props.count}
-      </div>
+      <h1>
+          Click Count: {this.props.count}
+      </h1>
     );
   }
 }
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 });
 
 App.propTypes = {
-  count: React.PropTypes.number.isRequired,
+  count: React.PropTypes.number,
   dispatch: React.PropTypes.func.isRequired,
 };
 

@@ -50,17 +50,23 @@ gulp.task('copy-manifest', ['clean'], () => {
     .pipe(gulp.dest('./build'));
 });
 
+gulp.task('copy-css', ['clean'], () => {
+  return gulp.src('src/css/httpobs.css')
+    .pipe(gulp.dest('./build'));
+});
+
 gulp.task('clean', (cb) => {
   rimraf('./build', cb);
 });
 
 // gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js']);
-gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js']);
+gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'copy-css']);
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('src/components/popup/**/*', ['build']);
   // gulp.watch('src/components/content/**/*', ['build']);
   gulp.watch('src/components/event/**/*', ['build']);
+  gulp.watch('src/css/**/*', ['build']);
 });
 
 gulp.task('default', ['build']);
