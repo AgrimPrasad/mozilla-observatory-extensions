@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 });
 
 App.propTypes = {
-  count: React.PropTypes.number,
+  count: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 

@@ -1,8 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  devtool: 'source-map',
-  
   entry: [
     './src/components/event/index.js',
     './src/components/popup/index.jsx',
