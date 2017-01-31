@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actionCreators from '../../actions/actionCreators';
 
+
 class App extends Component {
   componentDidMount() {
     setInterval(() => {
