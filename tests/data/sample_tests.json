@@ -1,0 +1,241 @@
+{
+  "content-security-policy": {
+    "expectation": "csp-implemented-with-no-unsafe",
+    "name": "content-security-policy",
+    "output": {
+      "data": {
+        "connect-src": [
+          "'self'",
+          "https://sentry.prod.mozaws.net"
+        ],
+        "default-src": [
+          "'self'"
+        ],
+        "font-src": [
+          "'self'",
+          "https://addons.cdn.mozilla.net"
+        ],
+        "frame-src": [
+          "'self'",
+          "https://ic.paypal.com",
+          "https://paypal.com",
+          "https://www.google.com/recaptcha/",
+          "https://www.paypal.com"
+        ],
+        "img-src": [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://www.paypal.com",
+          "https://ssl.google-analytics.com",
+          "https://addons.cdn.mozilla.net",
+          "https://static.addons.mozilla.net",
+          "https://ssl.gstatic.com/",
+          "https://sentry.prod.mozaws.net"
+        ],
+        "media-src": [
+          "https://videos.cdn.mozilla.net"
+        ],
+        "object-src": [
+          "'none'"
+        ],
+        "report-uri": [
+          "/__cspreport__"
+        ],
+        "script-src": [
+          "'self'",
+          "https://addons.mozilla.org",
+          "https://www.paypalobjects.com",
+          "https://apis.google.com",
+          "https://www.google.com/recaptcha/",
+          "https://www.gstatic.com/recaptcha/",
+          "https://ssl.google-analytics.com",
+          "https://addons.cdn.mozilla.net"
+        ],
+        "style-src": [
+          "'self'",
+          "'unsafe-inline'",
+          "https://addons.cdn.mozilla.net"
+        ]
+      }
+    },
+    "pass": false,
+    "result": "csp-implemented-with-unsafe-inline-in-style-src-only",
+    "score_description": "Content Security Policy (CSP) implemented with unsafe-inline inside style-src directive",
+    "score_modifier": -5
+  },
+  "contribute": {
+    "expectation": "contribute-json-with-required-keys",
+    "name": "contribute",
+    "output": {
+      "data": {
+        "bugs": {
+          "list": "https://github.com/mozilla/addons-server/issues",
+          "report": "https://github.com/mozilla/addons-server/issues/new"
+        },
+        "description": "Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey.",
+        "name": "Olympia",
+        "participate": {
+          "docs": "http://addons-server.readthedocs.org/",
+          "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
+          "irc": "irc://irc.mozilla.org/#amo",
+          "irc-contacts": [
+            "andym",
+            "cgrebs",
+            "kumar",
+            "magopian",
+            "mstriemer",
+            "muffinresearch",
+            "tofumatt"
+          ]
+        },
+        "urls": {
+          "dev": "https://addons-dev.allizom.org/",
+          "prod": "https://addons.mozilla.org/",
+          "stage": "https://addons.allizom.org/"
+        }
+      }
+    },
+    "pass": true,
+    "result": "contribute-json-with-required-keys",
+    "score_description": "Contribute.json implemented with the required contact information",
+    "score_modifier": 0
+  },
+  "cookies": {
+    "expectation": "cookies-secure-with-httponly-sessions",
+    "name": "cookies",
+    "output": {
+      "data": {
+        "sessionid": {
+          "domain": ".addons.mozilla.org",
+          "expires": null,
+          "httponly": true,
+          "max-age": null,
+          "path": "/",
+          "port": null,
+          "secure": true
+        }
+      }
+    },
+    "pass": true,
+    "result": "cookies-secure-with-httponly-sessions",
+    "score_description": "All cookies use the Secure flag and all session cookies use the HttpOnly flag",
+    "score_modifier": 0
+  },
+  "cross-origin-resource-sharing": {
+    "expectation": "cross-origin-resource-sharing-not-implemented",
+    "name": "cross-origin-resource-sharing",
+    "output": {
+      "data": {
+        "acao": null,
+        "clientaccesspolicy": null,
+        "crossdomain": null
+      }
+    },
+    "pass": true,
+    "result": "cross-origin-resource-sharing-not-implemented",
+    "score_description": "Content is not visible via cross-origin resource sharing (CORS) files or headers",
+    "score_modifier": 0
+  },
+  "public-key-pinning": {
+    "expectation": "hpkp-not-implemented",
+    "name": "public-key-pinning",
+    "output": {
+      "data": null,
+      "includeSubDomains": false,
+      "max-age": null,
+      "numPins": null,
+      "preloaded": false
+    },
+    "pass": true,
+    "result": "hpkp-not-implemented",
+    "score_description": "HTTP Public Key Pinning (HPKP) header not implemented",
+    "score_modifier": 0
+  },
+  "redirection": {
+    "expectation": "redirection-to-https",
+    "name": "redirection",
+    "output": {
+      "destination": "https://addons.mozilla.org/en-US/firefox/",
+      "redirects": true,
+      "route": [
+        "http://addons.mozilla.org/",
+        "https://addons.mozilla.org/",
+        "https://addons.mozilla.org/en-US/firefox/"
+      ],
+      "status_code": 200
+    },
+    "pass": true,
+    "result": "redirection-to-https",
+    "score_description": "Initial redirection is to https on same host, final destination is https",
+    "score_modifier": 0
+  },
+  "strict-transport-security": {
+    "expectation": "hsts-implemented-max-age-at-least-six-months",
+    "name": "strict-transport-security",
+    "output": {
+      "data": "max-age=31536000",
+      "includeSubDomains": false,
+      "max-age": 31536000,
+      "preload": false,
+      "preloaded": false
+    },
+    "pass": true,
+    "result": "hsts-implemented-max-age-at-least-six-months",
+    "score_description": "HTTP Strict Transport Security (HSTS) header set to a minimum of six months (15768000)",
+    "score_modifier": 0
+  },
+  "subresource-integrity": {
+    "expectation": "sri-implemented-and-external-scripts-loaded-securely",
+    "name": "subresource-integrity",
+    "output": {
+      "data": {
+        "https://addons.cdn.mozilla.net/static/js/impala-min.js?build=552decc-56eadb2f": {
+          "crossorigin": null,
+          "integrity": null
+        },
+        "https://addons.cdn.mozilla.net/static/js/preload-min.js?build=552decc-56eadb2f": {
+          "crossorigin": null,
+          "integrity": null
+        }
+      }
+    },
+    "pass": false,
+    "result": "sri-not-implemented-but-external-scripts-loaded-securely",
+    "score_description": "Subresource Integrity (SRI) not implemented, but all external scripts are loaded over https",
+    "score_modifier": -5
+  },
+  "x-content-type-options": {
+    "expectation": "x-content-type-options-nosniff",
+    "name": "x-content-type-options",
+    "output": {
+      "data": "nosniff"
+    },
+    "pass": true,
+    "result": "x-content-type-options-nosniff",
+    "score_description": "X-Content-Type-Options header set to \"nosniff\"",
+    "score_modifier": 0
+  },
+  "x-frame-options": {
+    "expectation": "x-frame-options-sameorigin-or-deny",
+    "name": "x-frame-options",
+    "output": {
+      "data": "DENY"
+    },
+    "pass": true,
+    "result": "x-frame-options-sameorigin-or-deny",
+    "score_description": "X-Frame-Options (XFO) header set to SAMEORIGIN or DENY",
+    "score_modifier": 0
+  },
+  "x-xss-protection": {
+    "expectation": "x-xss-protection-1-mode-block",
+    "name": "x-xss-protection",
+    "output": {
+      "data": "1; mode=block"
+    },
+    "pass": true,
+    "result": "x-xss-protection-enabled-mode-block",
+    "score_description": "X-XSS-Protection header set to \"1; mode=block\"",
+    "score_modifier": 0
+  }
+}

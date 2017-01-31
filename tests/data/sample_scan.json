@@ -1,0 +1,14 @@
+{
+  "end_time": "Tue, 22 Mar 2016 21:51:41 GMT",
+  "grade": "A",
+  "hidden": false,
+  "response_headers": { ... },
+  "scan_id": 1,
+  "score": 90,
+  "likelihood_indicator": "LOW",
+  "start_time": "Tue, 22 Mar 2016 21:51:40 GMT",
+  "state": "FINISHED",
+  "tests_failed": 2,
+  "tests_passed": 9,
+  "tests_quantity": 11
+}
