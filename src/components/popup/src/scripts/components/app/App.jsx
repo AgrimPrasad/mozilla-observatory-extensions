@@ -6,6 +6,14 @@ class App extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    setInterval(() => {
+      this.props.dispatch({
+        type: 'ADD_COUNT'
+      });
+    }, 1000);
+  }
+
   render() {
     return (
       <div>

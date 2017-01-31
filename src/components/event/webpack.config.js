@@ -3,12 +3,12 @@ const path = require('path');
 module.exports = {
 
   entry: [
-    './event/src/index.js'
+    './src/components/event/src/index.js'
   ],
 
   output: {
     filename: 'event.js',
-    path: path.join(__dirname, '../', 'build')
+    path: path.join(__dirname, '../../../', 'build')
   },
 
   resolve: {
