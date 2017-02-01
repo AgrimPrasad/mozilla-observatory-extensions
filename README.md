@@ -20,7 +20,7 @@ state (event component which runs in the background)
 actions (popup and event components)
 	+-- `INVOKE_ASSESSMENT` (`host`) Invoke a new scan of a website
 	+-- `RETRIEVE_ASSESSMENT` (`host`) Retrieve the `scans` object of an existing, ongoing, or completed scan
-	+-- `RETRIEVE_RESULTS` (`scan_id`) Retrieve the `tests` object for a given `scan_id`
+	+-- `RETRIEVE_RESULTS` (`scan_id`) Retrieve the `tests` object for a given `scan_id` Note: As per Postman based test, this will return an empty object until the scan object is in the `FINISHED` state.
 	+-- `RETRIEVE_OPTIONS` () Retrieve the `options` state object
 	+-- `UPDATE_OPTIONS` (`hidden`, `rescan`)
 ```
