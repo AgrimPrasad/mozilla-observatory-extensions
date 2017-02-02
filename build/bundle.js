@@ -3023,6 +3023,7 @@
 	var INVOKE_ASSESSMENT = exports.INVOKE_ASSESSMENT = 'INVOKE_ASSESSMENT';
 	var RETRIEVE_ASSESSMENT = exports.RETRIEVE_ASSESSMENT = 'RETRIEVE_ASSESSMENT';
 	var RETRIEVE_OPTIONS = exports.RETRIEVE_OPTIONS = 'RETRIEVE_OPTIONS';
+	var RETRIEVE_RESULTS = exports.RETRIEVE_RESULTS = 'RETRIEVE_RESULTS';
 	var UPDATE_OPTIONS = exports.UPDATE_OPTIONS = 'UPDATE_OPTIONS';
 	var ADD_COUNT = exports.ADD_COUNT = 'ADD_COUNT';
 
@@ -23426,6 +23427,11 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.invokeAssessment = invokeAssessment;
+	exports.retrieveAssessment = retrieveAssessment;
+	exports.retrieveResults = retrieveResults;
+	exports.retrieveOptions = retrieveOptions;
+	exports.updateOptions = updateOptions;
 	exports.addCount = addCount;
 
 	var _actionTypes = __webpack_require__(73);
@@ -23433,6 +23439,41 @@
 	var actionTypes = _interopRequireWildcard(_actionTypes);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function invokeAssessment(host) {
+		return {
+			type: actionTypes.INVOKE_ASSESSMENT,
+			host: host
+		};
+	}
+
+	function retrieveAssessment(host) {
+		return {
+			type: actionTypes.RETRIEVE_ASSESSMENT,
+			host: host
+		};
+	}
+
+	function retrieveResults(scan_id) {
+		return {
+			type: actionTypes.RETRIEVE_RESULTS,
+			scan_id: scan_id
+		};
+	}
+
+	function retrieveOptions(options) {
+		return {
+			type: actionTypes.RETRIEVE_OPTIONS,
+			options: options
+		};
+	}
+
+	function updateOptions(options) {
+		return {
+			type: actionTypes.UPDATE_OPTIONS,
+			options: options
+		};
+	}
 
 	function addCount(count) {
 		return {

@@ -9,11 +9,15 @@
   },
   "author": "Agrim Prasad",
   "dependencies": {
+    "babel-polyfill": "^6.22.0",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.3",
     "react-chrome-redux": "0.0.7",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-logger": "^2.8.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",

@@ -1,23 +1,25 @@
+import fetch from 'isomorphic-fetch';
+
 import * as actionTypes from './actionTypes';
 
-export function invokeAssessment(scans) {
+export function invokeAssessment(host) {
 	return {
 		type: actionTypes.INVOKE_ASSESSMENT,
-		scans
+		host
 	}
 }
 
-export function retrieveAssessment(scans) {
+export function retrieveAssessment(host) {
 	return {
 		type: actionTypes.RETRIEVE_ASSESSMENT,
-		scans
+		host
 	}
 }
 
-export function retrieveResults(results) {
+export function retrieveResults(scan_id) {
 	return {
 		type: actionTypes.RETRIEVE_RESULTS,
-		results
+		scan_id
 	}
 }
 

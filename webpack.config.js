@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     './src/components/event/index.js',
     './src/components/popup/index.jsx',
   ],

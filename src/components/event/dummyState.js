@@ -13,7 +13,7 @@
   			state: "PENDING",
   			tests_failed: 0,
   			tests_passed: 0,
-  			tests_quantity: 12
+  			tests_quantity: 12,
 			result: {}
 		},
 		'reddit.com': {
@@ -28,7 +28,7 @@
 			state: "FINISHED",
 			tests_failed: 5,
 			tests_passed: 7,
-			tests_quantity: 12
+			tests_quantity: 12,
 			result: {
 				"content-security-policy": {
 					"pass": false,

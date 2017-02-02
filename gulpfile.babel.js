@@ -28,8 +28,8 @@ gulp.task('copy-manifest', ['clean'], () => {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('copy-css', ['clean'], () => {
-  return gulp.src('src/css/httpobs.css')
+gulp.task('copy-styles', ['clean'], () => {
+  return gulp.src('src/styles/httpobs.css')
     .pipe(gulp.dest('./build'));
 });
 
@@ -37,7 +37,7 @@ gulp.task('clean', (cb) => {
   rimraf('./build', cb);
 });
 
-gulp.task('build', ['copy-manifest', 'webpack-js', 'popup-html', 'copy-css']);
+gulp.task('build', ['copy-manifest', 'webpack-js', 'popup-html', 'copy-styles']);
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('src/**/*', ['build']);

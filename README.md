@@ -44,7 +44,7 @@ tests
 * [sinon-chrome](https://github.com/acvetkov/sinon-chrome): Unit testing using sinon, mocha and chai
 
 ## Tasks to do
-- [x] Learn Chrome extensions: https://developer.chrome.com/extensions and create a basic chrome extension. : **30 Jan 2017**
+- [x] Learn [Chrome extensions](https://developer.chrome.com/extensions] and create a basic chrome extension. : **30 Jan 2017**
 - [x] Transform the basic chrome extension from previous step into a React + Redux app as per [react-chrome-redux](https://github.com/tshaddix/react-chrome-redux) : **31 Jan 2017**
 - [x] Study the [Mozilla HTTP Observatory API Documentation](https://github.com/mozilla/http-observatory/blob/master/httpobs/docs/api.md) and create the file structure and internal API to be used for the App. : **4 Feb 2017**
 - [ ] Style the React app using css styling from the [HTTP Observatory website](https://github.com/mozilla/http-observatory-website/tree/master/css) : **4 Feb 2017**
