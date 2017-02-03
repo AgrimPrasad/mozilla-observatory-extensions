@@ -3,6 +3,9 @@
   "name": "mozilla-http-observatory",
   "description": "Analyze website security using the Mozilla HTTP Observatory API ",
   "version": "0.0.1",
+  "permissions": [
+    "activeTab"
+  ],
   "background": {
     "scripts": [
       "bundle.js"
