@@ -1,4 +1,6 @@
-import * as actionTypes from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
+
+console.log('in selectedHost reducer: ', actionTypes);
 
 const initialState = 'yahoo.com';
 

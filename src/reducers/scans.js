@@ -1,4 +1,6 @@
-import * as actionTypes from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
+
+console.log('in scans reducer: ', actionTypes);
 
 const initialState = {};
 

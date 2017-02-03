@@ -11872,9 +11872,11 @@
 
 	var _actionTypes = __webpack_require__(378);
 
-	var actionTypes = _interopRequireWildcard(_actionTypes);
+	var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	console.log('in scans reducer: ', _actionTypes2.default);
 
 	var initialState = {};
 
@@ -11883,7 +11885,7 @@
 		var action = arguments[1];
 
 		switch (action.type) {
-			case actionTypes.INVOKE_ASSESSMENT:
+			case _actionTypes2.default.INVOKE_ASSESSMENT:
 				return state;
 			default:
 				return state;
@@ -11897,14 +11899,18 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
-	var SELECT_HOST = exports.SELECT_HOST = 'SELECT_HOST';
-	var INVOKE_ASSESSMENT = exports.INVOKE_ASSESSMENT = 'INVOKE_ASSESSMENT';
-	var RETRIEVE_ASSESSMENT = exports.RETRIEVE_ASSESSMENT = 'RETRIEVE_ASSESSMENT';
-	var RETRIEVE_OPTIONS = exports.RETRIEVE_OPTIONS = 'RETRIEVE_OPTIONS';
-	var RETRIEVE_RESULTS = exports.RETRIEVE_RESULTS = 'RETRIEVE_RESULTS';
-	var UPDATE_OPTIONS = exports.UPDATE_OPTIONS = 'UPDATE_OPTIONS';
+	var actionTypes = {
+		SELECT_HOST: 'SELECT_HOST',
+		INVOKE_ASSESSMENT: 'INVOKE_ASSESSMENT',
+		RETRIEVE_ASSESSMENT: 'RETRIEVE_ASSESSMENT',
+		RETRIEVE_OPTIONS: 'RETRIEVE_OPTIONS',
+		RETRIEVE_RESULTS: 'RETRIEVE_RESULTS',
+		UPDATE_OPTIONS: 'UPDATE_OPTIONS'
+	};
+
+	exports.default = actionTypes;
 
 /***/ },
 /* 379 */
@@ -11918,9 +11924,11 @@
 
 	var _actionTypes = __webpack_require__(378);
 
-	var actionTypes = _interopRequireWildcard(_actionTypes);
+	var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	console.log('in selectedHost reducer: ', _actionTypes2.default);
 
 	var initialState = 'yahoo.com';
 
@@ -11929,7 +11937,7 @@
 		var action = arguments[1];
 
 		switch (action.type) {
-			case actionTypes.SELECT_HOST:
+			case _actionTypes2.default.SELECT_HOST:
 				return action.host;
 			default:
 				return state;
@@ -32840,15 +32848,15 @@
 
 	var _actionTypes = __webpack_require__(378);
 
-	var actionTypes = _interopRequireWildcard(_actionTypes);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	console.log('in actionCreators: ', _actionTypes2.default);
+
 	function selectHost(host) {
 		var action = {
-			type: actionTypes.SELECT_HOST,
+			type: _actionTypes2.default.SELECT_HOST,
 			host: host
 		};
 		return action;
@@ -32856,35 +32864,35 @@
 
 	function invokeAssessment(host) {
 		return {
-			type: actionTypes.INVOKE_ASSESSMENT,
+			type: _actionTypes2.default.INVOKE_ASSESSMENT,
 			host: host
 		};
 	}
 
 	function retrieveAssessment(host) {
 		return {
-			type: actionTypes.RETRIEVE_ASSESSMENT,
+			type: _actionTypes2.default.RETRIEVE_ASSESSMENT,
 			host: host
 		};
 	}
 
 	function retrieveResults(scan_id) {
 		return {
-			type: actionTypes.RETRIEVE_RESULTS,
+			type: _actionTypes2.default.RETRIEVE_RESULTS,
 			scan_id: scan_id
 		};
 	}
 
 	function retrieveOptions(options) {
 		return {
-			type: actionTypes.RETRIEVE_OPTIONS,
+			type: _actionTypes2.default.RETRIEVE_OPTIONS,
 			options: options
 		};
 	}
 
 	function updateOptions(options) {
 		return {
-			type: actionTypes.UPDATE_OPTIONS,
+			type: _actionTypes2.default.UPDATE_OPTIONS,
 			options: options
 		};
 	}

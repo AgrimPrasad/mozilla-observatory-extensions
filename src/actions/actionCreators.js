@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
-import * as actionTypes from './actionTypes';
+import actionTypes from './actionTypes';
+
+console.log('in actionCreators: ', actionTypes);
 
 export function selectHost(host) {
     const action = {
