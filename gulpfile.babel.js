@@ -11,7 +11,7 @@ gulp.task('webpack-js', ['clean'], (cb) => {
   webpack(webpackConfig, (err, stats) => {
     if(err) throw new plugins.util.PluginError('webpack', err);
 
-    plugins.util.log('[webpack]', stats.toString());
+    plugins.util.log('[webpack]', stats.toString("minimal"));
 
     cb();
   });
