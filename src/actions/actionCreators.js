@@ -44,10 +44,3 @@ export function updateOptions(options) {
 		options
 	};
 }
-
-export function addCount(count) {
-	return {
-		type: actionTypes.ADD_COUNT,
-		count
-	};
-}
