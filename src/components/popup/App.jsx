@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import URL from 'url-parse';
 
 import * as actionCreators from '../../actions/actionCreators';
 
 class App extends Component {
   componentDidMount() {
-    chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
-        const hostname = new URL(tabs[0].url).hostname;
-        this.props.selectHost(hostname);
-    });
+    this.props.selectHost();
   }
 
   render() {
@@ -25,7 +21,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
   selectedHost: React.PropTypes.string.isRequired,
 };
 

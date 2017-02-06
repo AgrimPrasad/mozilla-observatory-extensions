@@ -2,15 +2,14 @@ import fetch from 'isomorphic-fetch';
 
 import actionTypes from './actionTypes';
 
-console.log('in actionCreators: ', actionTypes);
-
-export function selectHost(host) {
+export function selectHost() {
+	console.log('In selectHost() actionCreator');
     const action = {
 		type: actionTypes.SELECT_HOST,
-		host
 	};
 	return action;
 }
+
 
 export function invokeAssessment(host) {
 	return {
