@@ -11970,18 +11970,37 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var selectHost = function selectHost() {
-		debugger;
+		// debugger;
 		console.log('In selectHost() alias');
-		var host = 'alias Host';
-		chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-			host = new _urlParse2.default(tabs[0].url).hostname;
-		});
+		// let host = 'alias Host';
+		// chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
+		// 	host = new URL(tabs[0].url).hostname;
+		//    });
 
-		var action = {
-			type: _actionTypes2.default.SELECT_HOST,
-			host: host
+		//    const action = {
+		// 	type: actionTypes.SELECT_HOST,
+		// 	host
+		// };
+		// return action;
+
+		return function (dispatch, getState) {
+			var host = 'alias Host';
+			var tabQueryPromise = new Promise(function (resolve, reject) {
+				chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+					host = new _urlParse2.default(tabs[0].url).hostname;
+					resolve(host);
+				});
+			});
+
+			tabQueryPromise.then(function (val) {
+				return {
+					type: _actionTypes2.default.SELECT_HOST,
+					host: val
+				};
+			}).catch(function (reason) {
+				console.log('chrome tabs query reject promise (' + reason + ') here.');
+			});
 		};
-		return action;
 	};
 
 	exports.default = _defineProperty({}, _actionTypes2.default.SELECT_HOST, selectHost);
