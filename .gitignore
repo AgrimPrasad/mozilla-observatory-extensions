@@ -40,8 +40,5 @@ jspm_packages
 *DS_Store*
 
 # Sublime project files
-*s
-
-# Sublime project files
 *.sublime-project
 *.sublime-workspace

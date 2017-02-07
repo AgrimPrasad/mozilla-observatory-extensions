@@ -8,6 +8,7 @@
   ],
   "background": {
     "scripts": [
+      "browser-polyfill.js",
       "bundle.js"
     ],
     "persistent": true

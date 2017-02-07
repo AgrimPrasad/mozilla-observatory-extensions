@@ -14588,7 +14588,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var loggerMiddleware = (0, _reduxLogger2.default)();
 var preloadedState = {};
-var enhancer = (0, _redux.applyMiddleware)(_reduxThunk2.default, loggerMiddleware, (0, _reactChromeRedux.alias)(_aliases2.default));
+var enhancer = (0, _redux.applyMiddleware)((0, _reactChromeRedux.alias)(_aliases2.default), _reduxThunk2.default, loggerMiddleware);
 var store = (0, _redux.createStore)(_reducers2.default, preloadedState, enhancer);
 
 (0, _reactChromeRedux.wrapStore)(store, {
@@ -14767,6 +14767,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var updateHostInStore = function updateHostInStore(host) {
+	console.log('host in updateHostInStore ', host);
 	return {
 		type: _actionTypes2.default.UPDATE_HOST,
 		host: host
@@ -14774,17 +14775,16 @@ var updateHostInStore = function updateHostInStore(host) {
 };
 
 var selectHost = function selectHost() {
-	console.log('In selectHost() alias');
-
 	return function (dispatch, getState) {
-		chrome.tabs.query({
+		browser.tabs.query({
 			currentWindow: true, active: true
 		}).then(function (tabs) {
 			var host = new _urlParse2.default(tabs[0].url).hostname;
+			console.log('host in tabs query promise resolve ', host);
+			dispatch(updateHostInStore(host));
 		}).catch(function (err) {
-			console.log('chrome tabs query reject promise (' + err + ') here.');
+			console.log('browser tabs query reject promise (' + err + ') here.');
 		});
-		return null;
 	};
 };
 

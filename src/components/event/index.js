@@ -10,9 +10,9 @@ import aliases from '../../aliases/aliases';
 const loggerMiddleware = createLogger();
 const preloadedState = {};
 const enhancer = applyMiddleware(
+	alias(aliases),
 	thunkMiddleware,
-	loggerMiddleware,
-	alias(aliases)
+	loggerMiddleware
 );
 const store = createStore(rootReducer, 
 	preloadedState,
