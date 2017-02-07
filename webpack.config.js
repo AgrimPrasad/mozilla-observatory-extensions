@@ -14,20 +14,24 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.json'],
-    modulesDirectories: ['node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
+    modules: ['node_modules'],
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jsx|js)?$/,
-        loader: 'babel',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'react'],
+            }
+          }
+        ],
         exclude: /(node_modules)/,
-        include: path.join(__dirname, 'src'),
-        query: {
-          presets: ['es2015', 'react'],
-        },
+        include: path.join(__dirname, 'src')
       },
     ],
   },

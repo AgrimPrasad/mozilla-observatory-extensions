@@ -9,7 +9,9 @@ import webpackConfig from './webpack.config';
 
 gulp.task('webpack-js', ['clean'], (cb) => {
   webpack(webpackConfig, (err, stats) => {
-    if(err) throw new plugins.util.PluginError('webpack', err);
+    if(err) {
+      throw new plugins.util.PluginError('webpack', err);
+    }
 
     plugins.util.log('[webpack]', stats.toString("minimal"));
 
@@ -37,7 +39,7 @@ gulp.task('clean', (cb) => {
   rimraf('./build', cb);
 });
 
-gulp.task('build', ['copy-manifest', 'webpack-js', 'popup-html', 'copy-styles']);
+gulp.task('build', ['copy-manifest', 'popup-html', 'copy-styles', 'webpack-js']);
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('src/**/*', ['build']);
