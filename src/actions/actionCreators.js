@@ -10,6 +10,13 @@ export function selectHost() {
 	return action;
 }
 
+export function updateHostInStore(host) {
+	const action = {
+		type: actionTypes.UPDATE_HOST,
+	};
+	return action;
+}
+
 
 export function invokeAssessment(host) {
 	return {

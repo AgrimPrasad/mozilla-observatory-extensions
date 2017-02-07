@@ -1,45 +1,33 @@
 import actionTypes from '../actions/actionTypes';
 import URL from 'url-parse';
 
-const selectHost = () => {
-	// debugger;
-	console.log('In selectHost() alias');
-	// let host = 'alias Host';
-	// chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
-	// 	host = new URL(tabs[0].url).hostname;
- //    });
+const updateHostInStore = (host) => {
+	return {
+		type: actionTypes.UPDATE_HOST,
+		host
+	};
+};
 
- //    const action = {
-	// 	type: actionTypes.SELECT_HOST,
-	// 	host
-	// };
-	// return action;
+const selectHost = () => {
+	console.log('In selectHost() alias');
 
 	return (dispatch, getState) => {
-		let host = 'alias Host';
-		let tabQueryPromise = new Promise(function(resolve, reject) {
-			chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
-				host = new URL(tabs[0].url).hostname;
-				resolve (host);
-		    });
-		});
-
-		tabQueryPromise.then(
-			(val) => {
-				return {
-					type: actionTypes.SELECT_HOST,
-					host: val
-				}
+		chrome.tabs.query({
+			currentWindow: true, active: true
+		}).then(
+			(tabs) => {
+				let host = new URL(tabs[0].url).hostname;
 			}
-		)
-		.catch(
-			function(reason) {
-				console.log('chrome tabs query reject promise ('+reason+') here.');
+		).catch(
+			function(err) {
+				console.log('chrome tabs query reject promise (' + err + ') here.');
 			}
 		);
+		return null;
 	}
 };
 
 export default {
-	[actionTypes.SELECT_HOST]: selectHost
+	[actionTypes.SELECT_HOST]: selectHost,
+	[actionTypes.UPDATE_HOST]: updateHostInStore
 };

@@ -4,7 +4,7 @@ module.exports = {
   entry: [
     'babel-polyfill',
     './src/components/event/index.js',
-    './src/components/popup/index.jsx',
+    './src/components/popup/index.jsx'
   ],
 
   output: {

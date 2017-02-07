@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-const initialState = 'yahoo.com';
+const initialState = 'dummyHostFromReducer';
 
 export default (state = initialState, action) => {
 	switch (action.type) {

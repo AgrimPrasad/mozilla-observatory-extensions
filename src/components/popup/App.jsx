@@ -13,7 +13,7 @@ class App extends Component {
     return (
         <div>
           <h2>
-            Current Host: {this.props.selectedHost}
+            Current Host: {this.props.updatedHost}
           </h2>
         </div>
       );
@@ -26,7 +26,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  selectedHost: state.selectedHost
+  selectedHost: state.selectedHost,
+  updatedHost: state.updatedHost
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
