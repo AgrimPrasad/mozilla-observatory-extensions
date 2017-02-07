@@ -14674,7 +14674,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.selectHost = selectHost;
-exports.updateHostInStore = updateHostInStore;
 exports.invokeAssessment = invokeAssessment;
 exports.retrieveAssessment = retrieveAssessment;
 exports.retrieveResults = retrieveResults;
@@ -14695,13 +14694,6 @@ function selectHost() {
 	console.log('In selectHost() actionCreator');
 	var action = {
 		type: _actionTypes2.default.SELECT_HOST
-	};
-	return action;
-}
-
-function updateHostInStore(host) {
-	var action = {
-		type: _actionTypes2.default.UPDATE_HOST
 	};
 	return action;
 }
@@ -14752,8 +14744,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _actionTypes$SELECT_H;
-
 var _actionTypes = __webpack_require__(58);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
@@ -14767,7 +14757,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var updateHostInStore = function updateHostInStore(host) {
-	console.log('host in updateHostInStore ', host);
 	return {
 		type: _actionTypes2.default.UPDATE_HOST,
 		host: host
@@ -14788,7 +14777,7 @@ var selectHost = function selectHost() {
 	};
 };
 
-exports.default = (_actionTypes$SELECT_H = {}, _defineProperty(_actionTypes$SELECT_H, _actionTypes2.default.SELECT_HOST, selectHost), _defineProperty(_actionTypes$SELECT_H, _actionTypes2.default.UPDATE_HOST, updateHostInStore), _actionTypes$SELECT_H);
+exports.default = _defineProperty({}, _actionTypes2.default.SELECT_HOST, selectHost);
 
 /***/ }),
 /* 232 */

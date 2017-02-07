@@ -2,7 +2,6 @@ import actionTypes from '../actions/actionTypes';
 import URL from 'url-parse';
 
 const updateHostInStore = (host) => {
-	console.log('host in updateHostInStore ', host);
 	return {
 		type: actionTypes.UPDATE_HOST,
 		host
@@ -28,6 +27,5 @@ const selectHost = () => {
 };
 
 export default {
-	[actionTypes.SELECT_HOST]: selectHost,
-	[actionTypes.UPDATE_HOST]: updateHostInStore
+	[actionTypes.SELECT_HOST]: selectHost
 };
