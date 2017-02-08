@@ -6,14 +6,14 @@ import * as actionCreators from '../../actions/actionCreators';
 
 class App extends Component {
   componentDidMount() {
-    this.props.selectHost();
+    this.props.popupOpened();
   }
 
   render() {
     return (
         <div>
           <h2>
-            Current Host: {this.props.updatedHost}
+            Current Host: {this.props.currentHost}
           </h2>
         </div>
       );
@@ -22,12 +22,16 @@ class App extends Component {
 
 App.propTypes = {
   dispatch: React.PropTypes.func,
-  selectedHost: React.PropTypes.string.isRequired,
+
+  // actionCreators
+  popupOpened: React.PropTypes.string.isRequired,
+
+  // state
+  currentHost: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  selectedHost: state.selectedHost,
-  updatedHost: state.updatedHost
+  currentHost: state.currentHost
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);

@@ -2,10 +2,10 @@ import fetch from 'isomorphic-fetch';
 
 import actionTypes from './actionTypes';
 
-export function selectHost() {
-	console.log('In selectHost() actionCreator');
+export function popupOpened() {
+	console.log('In popupOpened() actionCreator');
     const action = {
-		type: actionTypes.SELECT_HOST,
+		type: actionTypes.POPUP_OPEN,
 	};
 	return action;
 }

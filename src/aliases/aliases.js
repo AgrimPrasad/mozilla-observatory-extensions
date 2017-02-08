@@ -1,22 +1,22 @@
 import actionTypes from '../actions/actionTypes';
 import URL from 'url-parse';
 
-const updateHostInStore = (host) => {
+const updateHost = (host) => {
 	return {
 		type: actionTypes.UPDATE_HOST,
 		host
 	};
 };
 
-const selectHost = () => {
+const popupOpened = () => {
 	return (dispatch, getState) => {
 		browser.tabs.query({
 			currentWindow: true, active: true
 		}).then(
 			(tabs) => {
 				let host = new URL(tabs[0].url).hostname;
-				console.log('host in tabs query promise resolve ', host);
-				dispatch(updateHostInStore(host));
+				console.log('host in tabs query promise resolution: ', host);
+				dispatch(updateHost(host));
 			}
 		).catch(
 			function(err) {
@@ -27,5 +27,5 @@ const selectHost = () => {
 };
 
 export default {
-	[actionTypes.SELECT_HOST]: selectHost
+	[actionTypes.POPUP_OPEN]: popupOpened
 };
