@@ -7,8 +7,8 @@ export function popupOpened() {
 	};
 }
 
-export function currentHostChanged() {
-	console.log('In currentHostChanged() actionCreator');
+export function hostChanged() {
+	console.log('In hostChanged() actionCreator');
 	return {
 		type: actionTypes.HOST_CHANGE
 	}

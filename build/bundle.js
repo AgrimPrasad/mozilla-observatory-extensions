@@ -4209,7 +4209,8 @@ var actionTypes = {
 	RETRIEVE_ASSESSMENT: 'RETRIEVE_ASSESSMENT',
 	RETRIEVE_OPTIONS: 'RETRIEVE_OPTIONS',
 	RETRIEVE_RESULTS: 'RETRIEVE_RESULTS',
-	UPDATE_OPTIONS: 'UPDATE_OPTIONS'
+	UPDATE_OPTIONS: 'UPDATE_OPTIONS',
+	HOST_CHANGE: 'HOST_CHANGE'
 };
 
 exports.default = actionTypes;
@@ -14674,15 +14675,12 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.popupOpened = popupOpened;
+exports.hostChanged = hostChanged;
 exports.invokeAssessment = invokeAssessment;
 exports.retrieveAssessment = retrieveAssessment;
 exports.retrieveResults = retrieveResults;
 exports.retrieveOptions = retrieveOptions;
 exports.updateOptions = updateOptions;
-
-var _isomorphicFetch = __webpack_require__(436);
-
-var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
 var _actionTypes = __webpack_require__(66);
 
@@ -14692,10 +14690,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function popupOpened() {
 	console.log('In popupOpened() actionCreator');
-	var action = {
+	return {
 		type: _actionTypes2.default.POPUP_OPEN
 	};
-	return action;
+}
+
+function hostChanged() {
+	console.log('In hostChanged() actionCreator');
+	return {
+		type: _actionTypes2.default.HOST_CHANGE
+	};
 }
 
 function invokeAssessment(host) {
@@ -14744,6 +14748,10 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _isomorphicFetch = __webpack_require__(436);
+
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
 var _actionTypes = __webpack_require__(66);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
@@ -14764,15 +14772,43 @@ var updateHost = function updateHost(host) {
 };
 
 var popupOpened = function popupOpened() {
-	return function (dispatch, getState) {
+	return function (dispatch) {
 		browser.tabs.query({
 			currentWindow: true, active: true
 		}).then(function (tabs) {
 			var host = new _urlParse2.default(tabs[0].url).hostname;
 			console.log('host in tabs query promise resolution: ', host);
 			dispatch(updateHost(host));
+			dispatch(hostChanged(host));
 		}).catch(function (err) {
 			console.log('browser tabs query reject promise (' + err + ') here.');
+		});
+	};
+};
+
+function checkStatus(response) {
+	if (response.status >= 200 && response.status < 300) {
+		return response;
+	} else {
+		var error = new Error(response.statusText);
+		error.response = response;
+		throw error;
+	}
+}
+
+function parseJSON(response) {
+	return response.json();
+}
+
+var hostChanged = function hostChanged(currentHost) {
+	return function (dispatch) {
+		// let currentHost = getState().currentHost;
+		(0, _isomorphicFetch2.default)('https://http-observatory.security.mozilla.org/api/v1/analyze?host=' + currentHost, {
+			method: 'POST'
+		}).then(checkStatus).then(parseJSON).then(function (data) {
+			console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', data);
+		}).catch(function (err) {
+			console.log('Invoke Assessment request failed with error: ' + err);
 		});
 	};
 };
@@ -14828,6 +14864,12 @@ var App = function (_Component) {
     value: function componentDidMount() {
       this.props.popupOpened();
     }
+
+    // onChange() {
+    //   console.log('onChanged() called');
+    //   this.props.currentHostChanged();
+    // }
+
   }, {
     key: 'render',
     value: function render() {
@@ -14851,7 +14893,7 @@ App.propTypes = {
   dispatch: _react2.default.PropTypes.func,
 
   // actionCreators
-  popupOpened: _react2.default.PropTypes.string.isRequired,
+  popupOpened: _react2.default.PropTypes.func.isRequired,
 
   // state
   currentHost: _react2.default.PropTypes.string.isRequired

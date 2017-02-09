@@ -18,6 +18,7 @@ const popupOpened = () => {
 				let host = new URL(tabs[0].url).hostname;
 				console.log('host in tabs query promise resolution: ', host);
 				dispatch(updateHost(host));
+				dispatch(hostChanged(host));
 			}
 		).catch(
 			function(err) {
@@ -27,27 +28,41 @@ const popupOpened = () => {
 	}
 };
 
-const hostChanged = () => {
-	return (dispatch, getState) => {
-		let currentHost = getState().currentHost;
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
+
+function parseJSON(response) {
+  return response.json()
+}
+
+const hostChanged = (currentHost) => {
+	return (dispatch) => {
+		// let currentHost = getState().currentHost;
 		fetch('https://http-observatory.security.mozilla.org/api/v1/analyze?host=' + currentHost, {
 			method: 'POST'
 		})
+		.then(checkStatus)
+		.then(parseJSON)
 		.then(
-			(tabs) => {
-				let host = new URL(tabs[0].url).hostname;
-				console.log('host in tabs query promise resolution: ', host);
-				dispatch(updateHost(host));
+			(data) => {
+				console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', data);
 			}
 		).catch(
 			function(err) {
-				console.log('browser tabs query reject promise (' + err + ') here.');
+				console.log('Invoke Assessment request failed with error: ' + err);
 			}
 		);
 	}
 }
 
 export default {
-	[actionTypes.POPUP_OPEN]: popupOpened,
-	[actionTypes.HOST_CHANGE]: hostChanged
+	[actionTypes.POPUP_OPEN]: popupOpened
+	// [actionTypes.HOST_CHANGE]: hostChanged
 };

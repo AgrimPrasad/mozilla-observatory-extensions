@@ -9,14 +9,15 @@ class App extends Component {
     this.props.popupOpened();
   }
 
-  onChange() {
-    this.props.currentHostChanged();
-  }
+  // onChange() {
+  //   console.log('onChanged() called');
+  //   this.props.currentHostChanged();
+  // }
 
   render() {
     return (
         <div>
-          <h2 onChange = {this.onChange.bind(this)}>
+          <h2>
             Current Host: {this.props.currentHost}
           </h2>
         </div>
@@ -28,7 +29,7 @@ App.propTypes = {
   dispatch: React.PropTypes.func,
 
   // actionCreators
-  popupOpened: React.PropTypes.string.isRequired,
+  popupOpened: React.PropTypes.func.isRequired,
 
   // state
   currentHost: React.PropTypes.string.isRequired,

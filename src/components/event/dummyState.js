@@ -1,6 +1,6 @@
 {
-	selected_host: 'google.com',
-	scan_for_host: {
+	currentHost: 'google.com',
+	scanForHost: {
 		'yahoo.com': {
 			is_fetching: true,
 			did_invalidate: false,
