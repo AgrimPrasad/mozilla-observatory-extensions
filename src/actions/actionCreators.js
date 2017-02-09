@@ -1,13 +1,17 @@
-import fetch from 'isomorphic-fetch';
-
 import actionTypes from './actionTypes';
 
 export function popupOpened() {
 	console.log('In popupOpened() actionCreator');
-    const action = {
-		type: actionTypes.POPUP_OPEN,
+    return {
+		type: actionTypes.POPUP_OPEN
 	};
-	return action;
+}
+
+export function currentHostChanged() {
+	console.log('In currentHostChanged() actionCreator');
+	return {
+		type: actionTypes.HOST_CHANGE
+	}
 }
 
 export function invokeAssessment(host) {

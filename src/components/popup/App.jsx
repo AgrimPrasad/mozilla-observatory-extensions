@@ -9,10 +9,14 @@ class App extends Component {
     this.props.popupOpened();
   }
 
+  onChange() {
+    this.props.currentHostChanged();
+  }
+
   render() {
     return (
         <div>
-          <h2>
+          <h2 onChange = {this.onChange.bind(this)}>
             Current Host: {this.props.currentHost}
           </h2>
         </div>
