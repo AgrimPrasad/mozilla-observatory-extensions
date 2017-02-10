@@ -9,11 +9,6 @@ class App extends Component {
     this.props.popupOpened();
   }
 
-  // onChange() {
-  //   console.log('onChanged() called');
-  //   this.props.currentHostChanged();
-  // }
-
   render() {
     return (
         <div>

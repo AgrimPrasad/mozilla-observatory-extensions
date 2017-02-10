@@ -4209,8 +4209,7 @@ var actionTypes = {
 	RETRIEVE_ASSESSMENT: 'RETRIEVE_ASSESSMENT',
 	RETRIEVE_OPTIONS: 'RETRIEVE_OPTIONS',
 	RETRIEVE_RESULTS: 'RETRIEVE_RESULTS',
-	UPDATE_OPTIONS: 'UPDATE_OPTIONS',
-	HOST_CHANGE: 'HOST_CHANGE'
+	UPDATE_OPTIONS: 'UPDATE_OPTIONS'
 };
 
 exports.default = actionTypes;
@@ -14675,7 +14674,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.popupOpened = popupOpened;
-exports.hostChanged = hostChanged;
 exports.invokeAssessment = invokeAssessment;
 exports.retrieveAssessment = retrieveAssessment;
 exports.retrieveResults = retrieveResults;
@@ -14692,13 +14690,6 @@ function popupOpened() {
 	console.log('In popupOpened() actionCreator');
 	return {
 		type: _actionTypes2.default.POPUP_OPEN
-	};
-}
-
-function hostChanged() {
-	console.log('In hostChanged() actionCreator');
-	return {
-		type: _actionTypes2.default.HOST_CHANGE
 	};
 }
 
@@ -14864,12 +14855,6 @@ var App = function (_Component) {
     value: function componentDidMount() {
       this.props.popupOpened();
     }
-
-    // onChange() {
-    //   console.log('onChanged() called');
-    //   this.props.currentHostChanged();
-    // }
-
   }, {
     key: 'render',
     value: function render() {

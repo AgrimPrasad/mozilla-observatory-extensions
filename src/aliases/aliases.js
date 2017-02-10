@@ -64,5 +64,4 @@ const hostChanged = (currentHost) => {
 
 export default {
 	[actionTypes.POPUP_OPEN]: popupOpened
-	// [actionTypes.HOST_CHANGE]: hostChanged
 };

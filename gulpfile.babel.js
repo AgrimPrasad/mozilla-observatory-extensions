@@ -36,7 +36,7 @@ gulp.task('copy-styles', ['clean'], () => {
 });
 
 gulp.task('copy-lib', ['clean'], () => {
-  return gulp.src('src/lib/*')
+  return gulp.src('lib/*')
     .pipe(gulp.dest('./build'));
 });
 

@@ -7,13 +7,6 @@ export function popupOpened() {
 	};
 }
 
-export function hostChanged() {
-	console.log('In hostChanged() actionCreator');
-	return {
-		type: actionTypes.HOST_CHANGE
-	}
-}
-
 export function invokeAssessment(host) {
 	return {
 		type: actionTypes.INVOKE_ASSESSMENT,
