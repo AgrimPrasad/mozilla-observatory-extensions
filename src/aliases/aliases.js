@@ -5,9 +5,18 @@ import URL from 'url-parse';
 const updateHost = (host) => {
 	return {
 		type: actionTypes.UPDATE_HOST,
-		host
+		payload: host
 	};
 };
+
+const updateScan = (host, scan) => {
+	return {
+		type: actionTypes.UPDATE_SCANS,
+		payload: {
+			host : scan
+		}
+	}
+}
 
 const popupOpened = () => {
 	return (dispatch) => {
@@ -51,8 +60,9 @@ const hostChanged = (currentHost) => {
 		.then(checkStatus)
 		.then(parseJSON)
 		.then(
-			(data) => {
-				console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', data);
+			(scan) => {
+				console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
+				dispatch(updateScan(currentHost, scan));
 			}
 		).catch(
 			function(err) {

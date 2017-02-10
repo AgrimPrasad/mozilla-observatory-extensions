@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 import options from './options';
 import results from './results';
-import scans from './scans';
-import currentHost from './updateHost';
+import scanForHost from './scans';
+import currentHost from './host';
 
 export default combineReducers({
-  options, results, scans, currentHost
+  options, results, scanForHost, currentHost
 });

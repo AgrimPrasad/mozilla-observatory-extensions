@@ -10,11 +10,15 @@ class App extends Component {
   }
 
   render() {
+    const scanForHost = scanForHost in this.props ? this.props.scanForHost : {};
     return (
         <div>
           <h2>
             Current Host: {this.props.currentHost}
           </h2>
+          <h3>
+            Scan Result: {this.props.currentHost in scanForHost ? scanForHost.currentHost : 'Loading...'}
+          </h3>
         </div>
       );
   }

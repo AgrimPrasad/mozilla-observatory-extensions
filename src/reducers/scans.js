@@ -1,9 +1,11 @@
 import actionTypes from '../actions/actionTypes';
-const initialState = {};
 
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
 	switch(action.type) {
-		case actionTypes.INVOKE_ASSESSMENT:
+		case actionTypes.UPDATE_SCANS:
+			let payload = action.payload;
+			let scanForHost = {...state.scanForHost, payload} || {};
+			let nextState = {...state, ...scanForHost};
 			return state;
 		default:
 			return state;
