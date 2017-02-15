@@ -4200,17 +4200,17 @@ module.exports = React;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 var actionTypes = {
-	POPUP_OPEN: 'POPUP_OPEN',
-	UPDATE_HOST: 'UPDATE_HOST',
-	INVOKE_ASSESSMENT: 'INVOKE_ASSESSMENT',
-	RETRIEVE_ASSESSMENT: 'RETRIEVE_ASSESSMENT',
-	RETRIEVE_OPTIONS: 'RETRIEVE_OPTIONS',
-	RETRIEVE_RESULTS: 'RETRIEVE_RESULTS',
-	UPDATE_OPTIONS: 'UPDATE_OPTIONS',
-	UPDATE_SCANS: 'UPDATE_SCANS'
+  POPUP_OPEN: 'POPUP_OPEN',
+  UPDATE_HOST: 'UPDATE_HOST',
+  INVOKE_ASSESSMENT: 'INVOKE_ASSESSMENT',
+  RETRIEVE_ASSESSMENT: 'RETRIEVE_ASSESSMENT',
+  RETRIEVE_OPTIONS: 'RETRIEVE_OPTIONS',
+  RETRIEVE_RESULTS: 'RETRIEVE_RESULTS',
+  UPDATE_OPTIONS: 'UPDATE_OPTIONS',
+  UPDATE_SCANS: 'UPDATE_SCANS'
 };
 
 exports.default = actionTypes;
@@ -14675,7 +14675,7 @@ define(String.prototype, "padRight", "".padEnd);
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.popupOpened = popupOpened;
 exports.invokeAssessment = invokeAssessment;
@@ -14691,45 +14691,44 @@ var _actionTypes2 = _interopRequireDefault(_actionTypes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function popupOpened() {
-	console.log('In popupOpened() actionCreator');
-	return {
-		type: _actionTypes2.default.POPUP_OPEN
-	};
+  return {
+    type: _actionTypes2.default.POPUP_OPEN
+  };
 }
 
 function invokeAssessment(host) {
-	return {
-		type: _actionTypes2.default.INVOKE_ASSESSMENT,
-		host: host
-	};
+  return {
+    type: _actionTypes2.default.INVOKE_ASSESSMENT,
+    host: host
+  };
 }
 
 function retrieveAssessment(host) {
-	return {
-		type: _actionTypes2.default.RETRIEVE_ASSESSMENT,
-		host: host
-	};
+  return {
+    type: _actionTypes2.default.RETRIEVE_ASSESSMENT,
+    host: host
+  };
 }
 
-function retrieveResults(scan_id) {
-	return {
-		type: _actionTypes2.default.RETRIEVE_RESULTS,
-		scan_id: scan_id
-	};
+function retrieveResults(scanId) {
+  return {
+    type: _actionTypes2.default.RETRIEVE_RESULTS,
+    scanId: scanId
+  };
 }
 
 function retrieveOptions(options) {
-	return {
-		type: _actionTypes2.default.RETRIEVE_OPTIONS,
-		options: options
-	};
+  return {
+    type: _actionTypes2.default.RETRIEVE_OPTIONS,
+    options: options
+  };
 }
 
 function updateOptions(options) {
-	return {
-		type: _actionTypes2.default.UPDATE_OPTIONS,
-		options: options
-	};
+  return {
+    type: _actionTypes2.default.UPDATE_OPTIONS,
+    options: options
+  };
 }
 
 /***/ }),
@@ -14740,83 +14739,81 @@ function updateOptions(options) {
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _isomorphicFetch = __webpack_require__(436);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
-var _actionTypes = __webpack_require__(66);
-
-var _actionTypes2 = _interopRequireDefault(_actionTypes);
-
 var _urlParse = __webpack_require__(226);
 
 var _urlParse2 = _interopRequireDefault(_urlParse);
+
+var _actionTypes = __webpack_require__(66);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var updateHost = function updateHost(host) {
-	return {
-		type: _actionTypes2.default.UPDATE_HOST,
-		payload: host
-	};
+  return {
+    type: _actionTypes2.default.UPDATE_HOST,
+    payload: host
+  };
 };
 
 var updateScan = function updateScan(host, scan) {
-	return {
-		type: _actionTypes2.default.UPDATE_SCANS,
-		payload: {
-			host: host,
-			scan: scan
-		}
-	};
-};
-
-var popupOpened = function popupOpened() {
-	return function (dispatch) {
-		browser.tabs.query({
-			currentWindow: true, active: true
-		}).then(function (tabs) {
-			var host = new _urlParse2.default(tabs[0].url).hostname;
-			console.log('host in tabs query promise resolution: ', host);
-			dispatch(updateHost(host));
-			dispatch(hostChanged(host));
-		}).catch(function (err) {
-			console.log('browser tabs query reject promise (' + err + ') here.');
-		});
-	};
+  return {
+    type: _actionTypes2.default.UPDATE_SCANS,
+    payload: {
+      host: host,
+      scan: scan
+    }
+  };
 };
 
 function checkStatus(response) {
-	if (response.status >= 200 && response.status < 300) {
-		return response;
-	} else {
-		var error = new Error(response.statusText);
-		error.response = response;
-		throw error;
-	}
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  var error = new Error(response.statusText);
+  error.response = response;
+  throw error;
 }
 
 function parseJSON(response) {
-	return response.json();
+  return response.json();
 }
 
 var hostChanged = function hostChanged(currentHost) {
-	return function (dispatch) {
-		// let currentHost = getState().currentHost;
-		(0, _isomorphicFetch2.default)('https://http-observatory.security.mozilla.org/api/v1/analyze?host=' + currentHost, {
-			method: 'POST'
-		}).then(checkStatus).then(parseJSON).then(function (scan) {
-			console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
-			dispatch(updateScan(currentHost, scan));
-		}).catch(function (err) {
-			console.log('Invoke Assessment request failed with error: ' + err);
-		});
-	};
+  return function (dispatch) {
+    (0, _isomorphicFetch2.default)('https://http-observatory.security.mozilla.org/api/v1/analyze?host=' + currentHost, {
+      method: 'POST'
+    }).then(checkStatus).then(parseJSON).then(function (scan) {
+      console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
+      dispatch(updateScan(currentHost, scan));
+    }).catch(function (err) {
+      console.log('Invoke Assessment request failed with error: ' + err);
+    });
+  };
+};
+
+var popupOpened = function popupOpened() {
+  return function (dispatch) {
+    browser.tabs.query({
+      currentWindow: true, active: true
+    }).then(function (tabs) {
+      var host = new _urlParse2.default(tabs[0].url).hostname;
+      console.log('host in tabs query promise resolution: ', host);
+      dispatch(updateHost(host));
+      dispatch(hostChanged(host));
+    }).catch(function (err) {
+      console.log('browser tabs query reject promise (' + err + ') here.');
+    });
+  };
 };
 
 exports.default = _defineProperty({}, _actionTypes2.default.POPUP_OPEN, popupOpened);
@@ -14873,8 +14870,8 @@ var App = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var scanForHost = 'scanForHost' in this.props ? this.props.scanForHost : {};
       var currentHost = this.props.currentHost;
+      var scanForHost = this.props.scanForHost || {};
       return _react2.default.createElement(
         'div',
         null,
@@ -14888,7 +14885,7 @@ var App = function (_Component) {
           'h3',
           null,
           'Scan Result: ',
-          currentHost in scanForHost ? scanForHost[currentHost]['scan_id'] : 'Loading...'
+          currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'
         )
       );
     }
@@ -14898,14 +14895,29 @@ var App = function (_Component) {
 }(_react.Component);
 
 App.propTypes = {
-  dispatch: _react2.default.PropTypes.func,
-
   // actionCreators
   popupOpened: _react2.default.PropTypes.func.isRequired,
 
   // state
   currentHost: _react2.default.PropTypes.string.isRequired,
-  scanForHost: _react2.default.PropTypes.object
+  scanForHost: _react2.default.PropTypes.shape({
+    end_time: _react2.default.PropTypes.string,
+    grade: _react2.default.PropTypes.string,
+    hidden: _react2.default.PropTypes.boolean,
+    likelihood_indicator: _react2.default.PropTypes.string,
+    response_headers: _react2.default.PropTypes.object,
+    scan_id: _react2.default.PropTypes.number,
+    score: _react2.default.PropTypes.number,
+    start_time: _react2.default.PropTypes.string,
+    state: _react2.default.PropTypes.string,
+    tests_failed: _react2.default.PropTypes.number,
+    tests_passed: _react2.default.PropTypes.number,
+    tests_quantity: _react2.default.PropTypes.number
+  })
+};
+
+App.defaultProps = {
+  scanForHost: {}
 };
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -14929,7 +14941,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _actionTypes = __webpack_require__(66);
@@ -14939,15 +14951,15 @@ var _actionTypes2 = _interopRequireDefault(_actionTypes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'dummyHostFromReducer';
-	var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'dummyHostFromReducer';
+  var action = arguments[1];
 
-	switch (action.type) {
-		case _actionTypes2.default.UPDATE_HOST:
-			return action.payload;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case _actionTypes2.default.UPDATE_HOST:
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -15017,7 +15029,7 @@ exports.default = {};
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -15031,25 +15043,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 exports.default = function () {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
 
-	switch (action.type) {
-		case _actionTypes2.default.UPDATE_SCANS:
-			// const scanObj = {[action.payload.host] : [action.payload.scan]};
-			// console.log('scanObj: ', scanObj);
-			// const scanForHost = {...state.scanForHost, scanObj} || {};
-			// console.log('scanForHost: ', scanForHost);
-			// console.log('...state', ...state);
-			// const nextState = {...state, { scanForHost : scanForHost }};
-			var scanForHost = state.scanForHost || {};
-			var scanForCurrHost = _defineProperty({}, action.payload.host, action.payload.scan);
-			var newScanForHost = Object.assign({}, scanForHost, scanForCurrHost);
-			var newState = _extends({}, state, newScanForHost);
-			return newState;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case _actionTypes2.default.UPDATE_SCANS:
+      {
+        var scanForHost = state.scanForHost || {};
+        var scanForCurrHost = _defineProperty({}, action.payload.host, action.payload.scan);
+        var newScanForHost = Object.assign({}, scanForHost, scanForCurrHost);
+        var newState = _extends({}, state, newScanForHost);
+        return newState;
+      }
+    default:
+      {
+        return state;
+      }
+  }
 };
 
 /***/ }),

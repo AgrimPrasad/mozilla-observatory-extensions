@@ -6,5 +6,5 @@ import scanForHost from './scans';
 import currentHost from './host';
 
 export default combineReducers({
-  options, results, scanForHost, currentHost
+  options, results, scanForHost, currentHost,
 });
