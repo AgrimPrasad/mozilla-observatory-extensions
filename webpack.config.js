@@ -16,6 +16,16 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: ['node_modules'],
+    alias: {
+      Actions: path.resolve(__dirname, 'src/actions/'),
+      Aliases: path.resolve(__dirname, 'src/aliases/'),
+      Components: path.resolve(__dirname, 'src/components/'),
+      Img: path.resolve(__dirname, 'src/img/'),
+      Reducers: path.resolve(__dirname, 'src/reducers/'),
+      Styles: path.resolve(__dirname, 'src/styles/'),
+      Lib: path.resolve(__dirname, 'lib/'),
+      Tests: path.resolve(__dirname, 'tests/'),
+    },
   },
 
   module: {

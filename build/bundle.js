@@ -21889,9 +21889,9 @@ var _reduxLogger = __webpack_require__(844);
 
 var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-var _reducers = __webpack_require__(355);
+var _Reducers = __webpack_require__(355);
 
-var _reducers2 = _interopRequireDefault(_reducers);
+var _Reducers2 = _interopRequireDefault(_Reducers);
 
 var _actionTypes = __webpack_require__(94);
 
@@ -21906,7 +21906,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var loggerMiddleware = (0, _reduxLogger2.default)();
 var preloadedState = {};
 var enhancer = (0, _redux.applyMiddleware)((0, _reactChromeRedux.alias)(_aliases2.default), _reduxThunk2.default, loggerMiddleware);
-var store = (0, _redux.createStore)(_reducers2.default, preloadedState, enhancer);
+var store = (0, _redux.createStore)(_Reducers2.default, preloadedState, enhancer);
 
 (0, _reactChromeRedux.wrapStore)(store, {
 	portName: 'appPort'
@@ -22203,6 +22203,22 @@ var App = function (_Component) {
         _react2.default.createElement(
           _Section2.default,
           { heading: 'Scan Summary' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            'Current Host: ',
+            currentHost
+          ),
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Scan Result: ',
+            currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'
+          )
+        ),
+        _react2.default.createElement(
+          _Section2.default,
+          { heading: 'Test Scores' },
           _react2.default.createElement(
             'h2',
             null,

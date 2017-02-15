@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import URL from 'url-parse';
 
-import actionTypes from '../actions/actionTypes';
+import actionTypes from 'Actions/actionTypes';
 
 const updateHost = host => ({
   type: actionTypes.UPDATE_HOST,

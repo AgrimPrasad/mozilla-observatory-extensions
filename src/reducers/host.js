@@ -1,4 +1,4 @@
-import actionTypes from '../actions/actionTypes';
+import actionTypes from 'Actions/actionTypes';
 
 export default (state = 'dummyHostFromReducer', action) => {
   switch (action.type) {

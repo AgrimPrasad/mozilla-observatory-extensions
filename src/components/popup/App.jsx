@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Heading from './Heading';
 import Section from './Section';
-import * as actionCreators from '../../actions/actionCreators';
+import * as actionCreators from 'Actions/actionCreators';
 
 class App extends Component {
   componentDidMount() {
@@ -18,6 +18,14 @@ class App extends Component {
       <div>
         <Heading/>
         <Section heading='Scan Summary'>
+          <h2>
+              Current Host: {currentHost}
+          </h2>
+          <h3>
+              Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
+          </h3>
+        </Section>
+        <Section heading='Test Scores'>
           <h2>
               Current Host: {currentHost}
           </h2>

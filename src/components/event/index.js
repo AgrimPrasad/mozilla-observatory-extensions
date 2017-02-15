@@ -3,9 +3,9 @@ import { alias, wrapStore } from 'react-chrome-redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import rootReducer from '../../reducers';
-import actionTypes from '../../actions/actionTypes';
-import aliases from '../../aliases/aliases';
+import rootReducer from 'Reducers';
+import actionTypes from 'Actions/actionTypes';
+import aliases from 'Aliases/aliases';
 
 const loggerMiddleware = createLogger();
 const preloadedState = {};
