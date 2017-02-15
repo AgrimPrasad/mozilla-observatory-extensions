@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Heading from './Heading';
 import * as actionCreators from '../../actions/actionCreators';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
     const scanForHost = this.props.scanForHost || {};
     return (
       <div>
+        <Heading/>
         <h2>
             Current Host: {currentHost}
         </h2>
