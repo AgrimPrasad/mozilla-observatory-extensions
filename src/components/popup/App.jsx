@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Heading from './Heading';
+import Section from './Section';
 import * as actionCreators from '../../actions/actionCreators';
 
 class App extends Component {
@@ -16,12 +17,14 @@ class App extends Component {
     return (
       <div>
         <Heading/>
-        <h2>
-            Current Host: {currentHost}
-        </h2>
-        <h3>
-            Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
-        </h3>
+        <Section heading='Scan Summary'>
+          <h2>
+              Current Host: {currentHost}
+          </h2>
+          <h3>
+              Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
+          </h3>
+        </Section>
       </div>
     );
   }
