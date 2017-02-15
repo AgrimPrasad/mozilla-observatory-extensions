@@ -31,7 +31,7 @@ gulp.task('copy-manifest', ['clean'], () => {
 });
 
 gulp.task('copy-styles', ['clean'], () => {
-  return gulp.src('src/styles/httpobs.css')
+  return gulp.src('src/styles/*.css')
     .pipe(gulp.dest('./build'));
 });
 
