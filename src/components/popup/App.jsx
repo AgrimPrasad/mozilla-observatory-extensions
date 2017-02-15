@@ -10,14 +10,15 @@ class App extends Component {
   }
 
   render() {
-    const scanForHost = scanForHost in this.props ? this.props.scanForHost : {};
+    const scanForHost = 'scanForHost' in this.props ? this.props.scanForHost : {};
+    const currentHost = this.props.currentHost;
     return (
         <div>
           <h2>
-            Current Host: {this.props.currentHost}
+            Current Host: {currentHost}
           </h2>
           <h3>
-            Scan Result: {this.props.currentHost in scanForHost ? scanForHost.currentHost : 'Loading...'}
+            Scan Result: {currentHost in scanForHost ? scanForHost[currentHost]['scan_id'] : 'Loading...'}
           </h3>
         </div>
       );
@@ -32,10 +33,12 @@ App.propTypes = {
 
   // state
   currentHost: React.PropTypes.string.isRequired,
+  scanForHost: React.PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  currentHost: state.currentHost
+  currentHost: state.currentHost,
+  scanForHost: state.scanForHost
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);

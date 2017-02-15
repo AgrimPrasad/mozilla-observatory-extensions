@@ -13,7 +13,8 @@ const updateScan = (host, scan) => {
 	return {
 		type: actionTypes.UPDATE_SCANS,
 		payload: {
-			host : scan
+			host : host,
+			scan : scan
 		}
 	}
 }
