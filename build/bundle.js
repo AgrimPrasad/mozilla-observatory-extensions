@@ -22329,8 +22329,10 @@ var Heading = function (_Component) {
             _react2.default.createElement(
               'a',
               { href: 'https://observatory.mozilla.org/' },
-              _react2.default.createElement('img', { id: 'observatory-wordmark', src: 'observatory-wordmark.svg',
-                alt: 'Observatory by Mozilla' })
+              _react2.default.createElement('img', {
+                id: 'observatory-wordmark', src: 'observatory-wordmark.svg',
+                alt: 'Observatory by Mozilla'
+              })
             )
           )
         )

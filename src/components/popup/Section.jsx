@@ -12,7 +12,7 @@ class Section extends Component {
 }
 
 Section.propTypes = {
-	heading: React.PropTypes.string.isRequired
+  heading: React.PropTypes.string.isRequired,
 };
 
 export default Section;

@@ -5,7 +5,9 @@
   "description": "",
   "scripts": {
     "lint": "eslint --fix --ext .jsx --ext .js src/**/*.js src/**/*.jsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "$(npm bin)/gulp watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-popup": "$(npm bin)/mocha-webpack --webpack-config webpack.config-test.babel.js tests/unit/components/popup-test.js"
   },
   "author": "Agrim Prasad",
   "dependencies": {

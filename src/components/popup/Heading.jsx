@@ -6,12 +6,14 @@ class Heading extends Component {
     return (
       <Navbar>
         <Navbar.Header>
-            <Navbar.Brand>
-              <a href="https://observatory.mozilla.org/">
-                  <img id="observatory-wordmark" src="observatory-wordmark.svg" 
-                      alt="Observatory by Mozilla"/>
-              </a>
-            </Navbar.Brand>
+          <Navbar.Brand>
+            <a href="https://observatory.mozilla.org/">
+              <img
+                id="observatory-wordmark" src="observatory-wordmark.svg"
+                alt="Observatory by Mozilla"
+              />
+            </a>
+          </Navbar.Brand>
         </Navbar.Header>
       </Navbar>
     );

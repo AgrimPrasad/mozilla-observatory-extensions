@@ -16,8 +16,8 @@ class App extends Component {
     const scanForHost = this.props.scanForHost || {};
     return (
       <div>
-        <Heading/>
-        <Section heading='Scan Summary'>
+        <Heading />
+        <Section heading="Scan Summary">
           <h2>
               Current Host: {currentHost}
           </h2>
@@ -25,7 +25,7 @@ class App extends Component {
               Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
           </h3>
         </Section>
-        <Section heading='Test Scores'>
+        <Section heading="Test Scores">
           <h2>
               Current Host: {currentHost}
           </h2>
