@@ -1,18 +1,19 @@
 import path from 'path';
+import nodeExternals from 'webpack-node-externals';
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/components/event/index.js',
-    './src/components/popup/index.jsx'
-  ],
-
   output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'build'),
-    publicPath: '/'
+    // use absolute paths in sourcemaps (important for debugging via IDE)
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+    devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
   },
-
+  
+  target: 'node',  // webpack should compile node compatible code
+  
+  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
+  
+  devtool: "inline-cheap-module-source-map",
+  
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: ['node_modules'],
@@ -40,8 +41,6 @@ module.exports = {
             }
           }
         ],
-        exclude: /(node_modules)/,
-        include: path.join(__dirname, 'src')
       },
     ],
   },
