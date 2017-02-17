@@ -22074,6 +22074,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var enums = {
+  character_mappings: {
+    checkmark: '&#x2713;',
+    latini: '&#x1d5a8',
+    uparrow: '&#x2b06;',
+    xmark: '&#x2717;'
+  },
+  grades: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'],
+  maxQueriesBeforeTimeout: 600,
+  urls: {
+    api: 'https://http-observatory.security.mozilla.org/api/v1/',
+    methods: {
+      POST: 'POST',
+      GET: 'GET'
+    }
+  }
+};
+
 var updateHost = function updateHost(host) {
   return {
     type: _actionTypes2.default.UPDATE_HOST,
@@ -22104,26 +22122,45 @@ function parseJSON(response) {
   return response.json();
 }
 
+function queryTabs() {
+  return browser.tabs.query({
+    currentWindow: true, active: true
+  });
+}
+
+function fetchFromApi(host, method) {
+  return (0, _isomorphicFetch2.default)(enums.urls.api + 'analyze?host=' + host, {
+    method: method
+  }).then(checkStatus).then(parseJSON);
+}
+
 var hostChanged = function hostChanged(currentHost) {
+  var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : enums.urls.methods.GET;
   return function (dispatch) {
-    (0, _isomorphicFetch2.default)('https://http-observatory.security.mozilla.org/api/v1/analyze?host=' + currentHost, {
-      method: 'POST'
-    }).then(checkStatus).then(parseJSON).then(function (scan) {
-      console.log('Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
-      dispatch(updateScan(currentHost, scan));
+    fetchFromApi(currentHost, method).then(function (scan) {
+      console.log('Retrieve Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
+
+      /* catch any scanning errors like invalid hostname etc. */
+      if (scan.error) {
+        if (scan.error === 'recent-scan-not-found') {
+          dispatch(hostChanged(currentHost, enums.urls.methods.POST));
+        }
+
+        // TODO Create and update an ERROR state for display to user
+      } else {
+        dispatch(updateScan(currentHost, scan));
+      }
     }).catch(function (err) {
-      console.log('Invoke Assessment request failed with error: ' + err);
+      console.log('Retrieve Assessment request failed with error: ' + err);
+      // TODO Create and update an ERROR state for display to user
     });
   };
 };
 
 var popupOpened = function popupOpened() {
   return function (dispatch) {
-    browser.tabs.query({
-      currentWindow: true, active: true
-    }).then(function (tabs) {
+    queryTabs().then(function (tabs) {
       var host = new _urlParse2.default(tabs[0].url).hostname;
-      console.log('host in tabs query promise resolution: ', host);
       dispatch(updateHost(host));
       dispatch(hostChanged(host));
     }).catch(function (err) {
@@ -22202,7 +22239,7 @@ var App = function (_Component) {
         _react2.default.createElement(_Heading2.default, null),
         _react2.default.createElement(
           _Section2.default,
-          { heading: 'Scan Summary' },
+          { heading: 'Scan Summary', id: 'scan-summary' },
           _react2.default.createElement(
             'h2',
             null,
@@ -22218,7 +22255,7 @@ var App = function (_Component) {
         ),
         _react2.default.createElement(
           _Section2.default,
-          { heading: 'Test Scores' },
+          { heading: 'Test Scores', id: 'test-scores' },
           _react2.default.createElement(
             'h2',
             null,
@@ -22386,7 +22423,7 @@ var Section = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         _reactBootstrap.Panel,
-        { defaultExpanded: true, header: this.props.heading, bsStyle: 'primary', id: 'scan-summary' },
+        { collapsible: true, expanded: true, header: this.props.heading, bsStyle: 'primary', id: this.props.id },
         this.props.children
       );
     }
@@ -22395,11 +22432,13 @@ var Section = function (_Component) {
   return Section;
 }(_react.Component);
 
-Section.propTypes = {
-  heading: _react2.default.PropTypes.string.isRequired
-};
-
 exports.default = Section;
+
+
+Section.propTypes = {
+  heading: _react2.default.PropTypes.string.isRequired,
+  id: _react2.default.PropTypes.string.isRequired
+};
 
 /***/ }),
 /* 354 */

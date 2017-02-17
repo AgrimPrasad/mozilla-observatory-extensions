@@ -3,6 +3,24 @@ import URL from 'url-parse';
 
 import actionTypes from 'Actions/actionTypes';
 
+const enums = {
+  character_mappings: {
+    checkmark: '&#x2713;',
+    latini: '&#x1d5a8',
+    uparrow: '&#x2b06;',
+    xmark: '&#x2717;'
+  },
+  grades: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'],
+  maxQueriesBeforeTimeout: 600,
+  urls: {
+    api: 'https://http-observatory.security.mozilla.org/api/v1/',
+    methods: {
+      POST: 'POST',
+      GET: 'GET'
+    }
+  }
+}
+
 const updateHost = host => ({
   type: actionTypes.UPDATE_HOST,
   payload: host,
@@ -29,28 +47,46 @@ function parseJSON(response) {
   return response.json();
 }
 
-const hostChanged = currentHost => (dispatch) => {
-  fetch(`https://http-observatory.security.mozilla.org/api/v1/analyze?host=${currentHost}`, {
-    method: 'POST',
+function queryTabs() {
+  return browser.tabs.query({
+    currentWindow: true, active: true,
+  });
+}
+
+function fetchFromApi(host, method) {
+  return fetch(`${enums.urls.api}analyze?host=${host}`, {
+    method: method,
   })
   .then(checkStatus)
-  .then(parseJSON)
+  .then(parseJSON);
+}
+
+const hostChanged = (currentHost, method=enums.urls.methods.GET) => (dispatch) => {
+  fetchFromApi(currentHost, method)
   .then((scan) => {
-    console.log(`Invoke Assessment request for ${currentHost} succeeded with JSON response`, scan);
-    dispatch(updateScan(currentHost, scan));
+    console.log(`Retrieve/Invoke Assessment request for ${currentHost} succeeded with JSON response`, scan);
+    
+    /* catch any scanning errors like invalid hostname etc. */
+    if (scan.error) {
+      if (scan.error === 'recent-scan-not-found') {
+        dispatch(hostChanged(currentHost, enums.urls.methods.POST));
+      }
+
+      // TODO Create and update an ERROR state for display to user
+    } else {
+      dispatch(updateScan(currentHost, scan));
+    }
   })
   .catch((err) => {
-    console.log(`Invoke Assessment request failed with error: ${err}`);
+    console.log(`Retrieve Assessment request failed with error: ${err}`);
+    // TODO Create and update an ERROR state for display to user
   });
 };
 
 const popupOpened = () => (dispatch) => {
-  browser.tabs.query({
-    currentWindow: true, active: true,
-  })
+  queryTabs()
   .then((tabs) => {
     const host = new URL(tabs[0].url).hostname;
-    console.log('host in tabs query promise resolution: ', host);
     dispatch(updateHost(host));
     dispatch(hostChanged(host));
   })

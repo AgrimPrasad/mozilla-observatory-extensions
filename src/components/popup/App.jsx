@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div>
         <Heading />
-        <Section heading="Scan Summary">
+        <Section heading="Scan Summary" id="scan-summary">
           <h2>
               Current Host: {currentHost}
           </h2>
@@ -25,7 +25,7 @@ class App extends Component {
               Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
           </h3>
         </Section>
-        <Section heading="Test Scores">
+        <Section heading="Test Scores" id="test-scores">
           <h2>
               Current Host: {currentHost}
           </h2>

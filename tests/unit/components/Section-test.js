@@ -12,6 +12,7 @@ import Section from 'Components/popup/Section';
 describe("<Section />", function() {
   const defaultProps = {
     heading: "DummyHeading",
+    id: "DummyId"
   };
 
   it('should render without blowing up', () => {
@@ -32,4 +33,11 @@ describe("<Section />", function() {
     expect(wrapper.find(Panel))
     		.to.have.prop("bsStyle", "primary");
   });
+
+  it('should accept id `prop`', () => {
+    const wrapper = shallow(<Section {...defaultProps} />);
+    expect(wrapper.find(Panel))
+    		.to.have.id(defaultProps.id);
+  });
+
 });
