@@ -1,10 +1,14 @@
 import React from 'react';
-import { expect } from 'chai';
+import chai from 'chai';
+import chaiEnzyme from 'chai-enzyme'
 import { shallow, mount } from 'enzyme';
 
 import ConnectedApp from 'Components/popup/App';
 import Heading from 'Components/popup/Heading';
 import Section from 'Components/popup/Section';
+
+chai.use(chaiEnzyme());
+const expect = chai.expect;
 
 describe("popup components", function() {
 	const App = ConnectedApp.WrappedComponent;
@@ -34,6 +38,13 @@ describe("popup components", function() {
 	  it('should render without blowing up', () => {
 	    const wrapper = shallow(<Heading />);
 	    expect(wrapper.length).to.eql(1);
+	  });
+
+	  it('should have a Navbar.Brand img', () => {
+	    const wrapper = shallow(<Heading />);
+	    // TODO How to find the component with the correct hierarchy?
+	    expect(wrapper.find('img'))
+	    		.to.have.id('observatory-wordmark');
 	  });
 
 	});

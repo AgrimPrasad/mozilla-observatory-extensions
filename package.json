@@ -7,7 +7,7 @@
     "lint": "eslint --fix --ext .jsx --ext .js src/**/*.js src/**/*.jsx",
     "gulp": "$(npm bin)/gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-popup": "$(npm bin)/mocha-webpack --webpack-config webpack.config-test.babel.js tests/unit/components/popup-test.js"
+    "test-popup": "$(npm bin)/mocha-webpack --watch --webpack-config webpack.config-test.babel.js tests/unit/components/popup-test.js"
   },
   "author": "Agrim Prasad",
   "dependencies": {
@@ -33,6 +33,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "chai-enzyme": "^0.6.1",
     "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
