@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 
-class Heading extends Component {
+export class Heading extends Component {
   render() {
     return (
       <Navbar>

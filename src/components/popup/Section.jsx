@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
-class Section extends Component {
+export class Section extends Component {
   render() {
     return (
       <Panel defaultExpanded header={this.props.heading} bsStyle="primary" id="scan-summary">
