@@ -6,7 +6,7 @@ import Heading from './Heading';
 import Section from './Section';
 import * as actionCreators from 'Actions/actionCreators';
 
-export class App extends Component {
+class App extends Component {
   componentDidMount() {
     this.props.popupOpened();
   }

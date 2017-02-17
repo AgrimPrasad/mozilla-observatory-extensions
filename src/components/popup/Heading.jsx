@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 
-export class Heading extends Component {
+export default class Heading extends Component {
   render() {
     return (
       <Navbar>
@@ -19,5 +19,3 @@ export class Heading extends Component {
     );
   }
 }
-
-export default Heading;

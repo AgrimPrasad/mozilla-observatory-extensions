@@ -2,11 +2,12 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 
-import { App } from 'Components/popup/App';
-import { Heading } from 'Components/popup/Heading';
-import { Section } from 'Components/popup/Section';
+import ConnectedApp from 'Components/popup/App';
+import Heading from 'Components/popup/Heading';
+import Section from 'Components/popup/Section';
 
-describe("Popup Components Unit Tests", function() {
+describe("popup components", function() {
+	const App = ConnectedApp.WrappedComponent;
 	
 	describe("<App />", function() {
 	  const defaultProps = {
