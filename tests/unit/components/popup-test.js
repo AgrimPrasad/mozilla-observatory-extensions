@@ -2,6 +2,8 @@ import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme'
 import { shallow, mount } from 'enzyme';
+import { Navbar } from 'react-bootstrap';
+
 
 import ConnectedApp from 'Components/popup/App';
 import Heading from 'Components/popup/Heading';
@@ -40,11 +42,34 @@ describe("popup components", function() {
 	    expect(wrapper.length).to.eql(1);
 	  });
 
-	  it('should have a Navbar.Brand img', () => {
+	  it('should have a Navbar', () => {
 	    const wrapper = shallow(<Heading />);
-	    // TODO How to find the component with the correct hierarchy?
-	    expect(wrapper.find('img'))
+	    expect(wrapper.find(Navbar).length)
+	    		.to.eql(1);
+	  });
+
+	  it('should have a Navbar.Header', () => {
+	    const wrapper = shallow(<Heading />);
+	    expect(wrapper.find(Navbar.Header).length)
+	    		.to.eql(1);
+	  });
+
+	  it('should have a Navbar.Brand', () => {
+	    const wrapper = shallow(<Heading />);
+	    expect(wrapper.find(Navbar.Brand).length)
+	    		.to.eql(1);
+	  });
+
+	  it('should have a wordmark img + link', () => {
+	    const wrapper = shallow(<Heading />);
+	    expect(wrapper.find('a'))
+	    		.to.have.attr('href', 'https://observatory.mozilla.org/');
+	    expect(wrapper.find('a img'))
 	    		.to.have.id('observatory-wordmark');
+	    expect(wrapper.find('a img'))
+	    		.to.have.attr('src', 'observatory-wordmark.svg');
+	    expect(wrapper.find('a img'))
+	    		.to.have.attr('alt', 'Observatory by Mozilla');
 	  });
 
 	});
