@@ -1,12 +1,19 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
-import App from 'Components/popup/App';
+import { App } from 'Components/popup/App';
 
 describe("App Sanity", function() {
   const defaultProps = {
     dispatch: () => {},
-    manifest: { components: [] },
+    
+    // actionCreators
+  	popupOpened: () => {},
+
+  	// state
+  	currentHost: "",
+    scanForHost: {},
+
   };
 
   it('should render without blowing up', () => {
