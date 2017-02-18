@@ -36881,6 +36881,11 @@ var App = function (_Component) {
       this.props.popupOpened();
     }
   }, {
+    key: 'dataReady',
+    value: function dataReady(data) {
+      return typeof data != 'undefined' && data != null && data != NaN;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var currentHost = this.props.currentHost;
@@ -36895,12 +36900,12 @@ var App = function (_Component) {
           _Section2.default,
           { heading: 'Scan Summary', id: 'scan-summary' },
           _react2.default.createElement(
-            'h2',
-            null,
+            'h3',
+            { id: 'host' },
             currentHost || 'Loading...'
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'grade' },
             'Grade: ',
             scanData.grade || 'Loading...',
@@ -36908,7 +36913,7 @@ var App = function (_Component) {
             scanData.hidden ? '(unlisted)' : ''
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'scan-id' },
             'Scan ID ',
             '#',
@@ -36916,28 +36921,28 @@ var App = function (_Component) {
             scanData.scan_id || 'Loading...'
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'test-time' },
             'Test Time: ',
-            scanData.start_time ? Utils.toLocalTime(scanData.start_time) : 'Loading...'
+            this.dataReady(scanData.start_time) ? Utils.toLocalTime(scanData.start_time) : 'Loading...'
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'test-duration' },
             'Test Duration: ',
-            scanData.start_time ? Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' : 'Loading...'
+            this.dataReady(scanData.end_time) ? Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' : 'Loading...'
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'score' },
             'Score: ',
-            scanData.score + '/100' || 'Loading...'
+            this.dataReady(scanData.score) ? scanData.score + '/100' : 'Loading...'
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             { id: 'tests-passed' },
             'Tests Passed: ',
-            scanData.tests_passed + '/' + scanData.tests_quantity || 'Loading...'
+            this.dataReady(scanData.tests_passed) ? scanData.tests_passed + '/' + scanData.tests_quantity : 'Loading...'
           )
         ),
         _react2.default.createElement(
@@ -36950,7 +36955,7 @@ var App = function (_Component) {
             currentHost
           ),
           _react2.default.createElement(
-            'h3',
+            'p',
             null,
             '(Dummy)Scan Result: ',
             currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'

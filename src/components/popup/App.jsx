@@ -12,6 +12,10 @@ class App extends Component {
     this.props.popupOpened();
   }
 
+  dataReady(data) {
+    return typeof data != 'undefined' && data != null && data != NaN;
+  }
+
   render() {
     const currentHost = this.props.currentHost;
     const scanForHost = this.props.scanForHost || {};
@@ -21,37 +25,38 @@ class App extends Component {
       <div>
         <Heading />
         <Section heading="Scan Summary" id="scan-summary">
-          <h2>
+          <h3 id="host">
               {currentHost || 'Loading...'}
-          </h2>
-          <h3 id="grade">
+          </h3>
+          <p id="grade">
               Grade: {scanData.grade || 'Loading...'} {scanData.hidden ? '(unlisted)' : ''}
-          </h3>
-          <h3 id="scan-id">
+          </p>
+          <p id="scan-id">
               Scan ID {'#'}: {scanData.scan_id || 'Loading...'}
-          </h3>
-          <h3 id="test-time">
-              Test Time: {scanData.start_time ? Utils.toLocalTime(scanData.start_time) : 'Loading...'}
-          </h3>
-          <h3 id="test-duration">
-              Test Duration: {scanData.start_time ? 
+          </p>
+          <p id="test-time">
+              Test Time: {this.dataReady(scanData.start_time) ? Utils.toLocalTime(scanData.start_time) : 'Loading...'}
+          </p>
+          <p id="test-duration">
+              Test Duration: {this.dataReady(scanData.end_time) ? 
                               Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' 
                               : 'Loading...'}
-          </h3>
-          <h3 id="score">
-              Score: {scanData.score + '/100' || 'Loading...'}
-          </h3>
-          <h3 id="tests-passed">
-              Tests Passed: {scanData.tests_passed + '/' + scanData.tests_quantity || 'Loading...'}
-          </h3>
+          </p>
+          <p id="score">
+              Score: {this.dataReady(scanData.score) ? scanData.score  + '/100' : 'Loading...'}
+          </p>
+          <p id="tests-passed">
+              Tests Passed: {this.dataReady(scanData.tests_passed) ? 
+                              scanData.tests_passed + '/' + scanData.tests_quantity : 'Loading...'}
+          </p>
         </Section>
         <Section heading="Test Scores" id="test-scores">
           <h2>
               (Dummy){currentHost}
           </h2>
-          <h3>
+          <p>
               (Dummy)Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
-          </h3>
+          </p>
         </Section>
       </div>
     );

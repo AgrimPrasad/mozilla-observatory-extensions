@@ -70,11 +70,11 @@ describe("<App />", function() {
 
   it('should contain current host if present', () => {
     const wrapper = render(<App {...defaultProps} />);
-    expect(wrapper.find("#scan-summary").find('h2').text()).to.contain('Loading...');
+    expect(wrapper.find("#scan-summary").find('#host').text()).to.contain('Loading...');
 
     const hostText = `${mockHost}`;
     const mockWrapper = render(<App {...mockState} />);
-    expect(mockWrapper.find("#scan-summary").find('h2').text()).to.contain(hostText);
+    expect(mockWrapper.find("#scan-summary").find('#host').text()).to.contain(hostText);
   });
 
   it('should contain current grade if present', () => {
@@ -82,10 +82,10 @@ describe("<App />", function() {
     expect(wrapper.find("#scan-summary").find('#grade').text()).to.contain('Loading...');
 
     const grade = sampleScan['grade'];
-    const scanIdText = `Grade: ${grade}`;
+    const expectedText = `Grade: ${grade}`;
     const mockWrapper = render(<App {...mockState} />);
 
-    expect(mockWrapper.find("#scan-summary").find('#grade').text()).to.contain(scanIdText);
+    expect(mockWrapper.find("#scan-summary").find('#grade').text()).to.contain(expectedText);
   });
 
   it('should contain current Scan ID if present', () => {
@@ -93,10 +93,10 @@ describe("<App />", function() {
     expect(wrapper.find("#scan-summary").find('#scan-id').text()).to.contain('Loading...');
 
     const scanId = sampleScan['scan_id'];
-    const scanIdText = `Scan ID #: ${scanId}`;
+    const expectedText = `Scan ID #: ${scanId}`;
     const mockWrapper = render(<App {...mockState} />);
 
-    expect(mockWrapper.find("#scan-summary").find('#scan-id').text()).to.contain(scanIdText);
+    expect(mockWrapper.find("#scan-summary").find('#scan-id').text()).to.contain(expectedText);
   });
 
   it('should contain current Test Time if present', () => {
@@ -104,10 +104,10 @@ describe("<App />", function() {
     expect(wrapper.find("#scan-summary").find('#test-time').text()).to.contain('Loading...');
 
     const testTime = sampleScan['start_time'];
-    const scanIdText = `Test Time: ${Utils.toLocalTime(testTime)}`;
+    const expectedText = `Test Time: ${Utils.toLocalTime(testTime)}`;
     const mockWrapper = render(<App {...mockState} />);
 
-    expect(mockWrapper.find("#scan-summary").find('#test-time').text()).to.contain(scanIdText);
+    expect(mockWrapper.find("#scan-summary").find('#test-time').text()).to.contain(expectedText);
   });
 
   it('should contain current Test Duration if present', () => {
@@ -116,34 +116,32 @@ describe("<App />", function() {
 
     const startTime = sampleScan['start_time'];
     const endTime = sampleScan['end_time'];
-    const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
+    const expectedText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
     const mockWrapper = render(<App {...mockState} />);
 
-    expect(mockWrapper.find("#scan-summary").find('#test-duration').text()).to.contain(scanIdText);
+    expect(mockWrapper.find("#scan-summary").find('#test-duration').text()).to.contain(expectedText);
   });
 
-  // it('should contain current Score if present', () => {
-  //   const wrapper = render(<App {...defaultProps} />);
-  //   expect(wrapper.find("#scan-summary").find('#testDuration').text()).to.contain('Loading...');
+  it('should contain current Score if present', () => {
+    const wrapper = render(<App {...defaultProps} />);
+    expect(wrapper.find("#scan-summary").find('#score').text()).to.contain('Loading...');
 
-  //   const startTime = sampleScan['start_time'];
-  //   const endTime = sampleScan['end_time'];
-  //   const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
-  //   const mockWrapper = render(<App {...mockState} />);
+    const score = sampleScan['score'];
+    const expectedText = `Score: ${score}`;
+    const mockWrapper = render(<App {...mockState} />);
 
-  //   expect(mockWrapper.find("#scan-summary").find('#testDuration').text()).to.contain(scanIdText);
-  // });
+    expect(mockWrapper.find("#scan-summary").find('#score').text()).to.contain(expectedText);
+  });
 
-  // it('should contain current Tests Passed if present', () => {
-  //   const wrapper = render(<App {...defaultProps} />);
-  //   expect(wrapper.find("#scan-summary").find('#testDuration').text()).to.contain('Loading...');
+  it('should contain current Tests Passed if present', () => {
+    const wrapper = render(<App {...defaultProps} />);
+    expect(wrapper.find("#scan-summary").find('#tests-passed').text()).to.contain('Loading...');
 
-  //   const startTime = sampleScan['start_time'];
-  //   const endTime = sampleScan['end_time'];
-  //   const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
-  //   const mockWrapper = render(<App {...mockState} />);
+    const testsPassed = sampleScan['tests_passed'];
+    const expectedText = `Tests Passed: ${testsPassed}`;
+    const mockWrapper = render(<App {...mockState} />);
 
-  //   expect(mockWrapper.find("#scan-summary").find('#testDuration').text()).to.contain(scanIdText);
-  // });
+    expect(mockWrapper.find("#scan-summary").find('#tests-passed').text()).to.contain(expectedText);
+  });
 
 });
