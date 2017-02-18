@@ -19,7 +19,7 @@ class App extends Component {
         <Heading />
         <Section heading="Scan Summary" id="scan-summary">
           <h2>
-              Current Host: {currentHost}
+              Current Host: {currentHost || 'Loading...'}
           </h2>
           <h3>
               Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
@@ -27,10 +27,10 @@ class App extends Component {
         </Section>
         <Section heading="Test Scores" id="test-scores">
           <h2>
-              Current Host: {currentHost}
+              (Dummy)Current Host: {currentHost}
           </h2>
           <h3>
-              Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
+              (Dummy)Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
           </h3>
         </Section>
       </div>

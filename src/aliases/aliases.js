@@ -4,12 +4,6 @@ import URL from 'url-parse';
 import actionTypes from 'Actions/actionTypes';
 
 const enums = {
-  character_mappings: {
-    checkmark: '&#x2713;',
-    latini: '&#x1d5a8',
-    uparrow: '&#x2b06;',
-    xmark: '&#x2717;'
-  },
   grades: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'],
   maxQueriesBeforeTimeout: 600,
   urls: {

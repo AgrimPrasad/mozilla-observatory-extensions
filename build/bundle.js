@@ -22075,12 +22075,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var enums = {
-  character_mappings: {
-    checkmark: '&#x2713;',
-    latini: '&#x1d5a8',
-    uparrow: '&#x2b06;',
-    xmark: '&#x2717;'
-  },
   grades: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'],
   maxQueriesBeforeTimeout: 600,
   urls: {
@@ -22138,7 +22132,7 @@ var hostChanged = function hostChanged(currentHost) {
   var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : enums.urls.methods.GET;
   return function (dispatch) {
     fetchFromApi(currentHost, method).then(function (scan) {
-      console.log('Retrieve Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
+      console.log('Retrieve/Invoke Assessment request for ' + currentHost + ' succeeded with JSON response', scan);
 
       /* catch any scanning errors like invalid hostname etc. */
       if (scan.error) {
@@ -22244,7 +22238,7 @@ var App = function (_Component) {
             'h2',
             null,
             'Current Host: ',
-            currentHost
+            currentHost || 'Loading...'
           ),
           _react2.default.createElement(
             'h3',
@@ -22259,13 +22253,13 @@ var App = function (_Component) {
           _react2.default.createElement(
             'h2',
             null,
-            'Current Host: ',
+            '(Dummy)Current Host: ',
             currentHost
           ),
           _react2.default.createElement(
             'h3',
             null,
-            'Scan Result: ',
+            '(Dummy)Scan Result: ',
             currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'
           )
         )
