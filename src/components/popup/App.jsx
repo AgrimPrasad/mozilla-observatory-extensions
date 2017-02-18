@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Heading from './Heading';
 import Section from './Section';
 import * as actionCreators from 'Actions/actionCreators';
+import * as Utils from 'Utils/utils';
 
 class App extends Component {
   componentDidMount() {
@@ -14,20 +15,37 @@ class App extends Component {
   render() {
     const currentHost = this.props.currentHost;
     const scanForHost = this.props.scanForHost || {};
+    const scanData = scanForHost[currentHost] || {};
+
     return (
       <div>
         <Heading />
         <Section heading="Scan Summary" id="scan-summary">
           <h2>
-              Current Host: {currentHost || 'Loading...'}
+              {currentHost || 'Loading...'}
           </h2>
           <h3>
-              Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
+              Grade: {scanData.grade || 'Loading...'}
+          </h3>
+          <h3>
+              Scan ID {'#'}: {scanData.scan_id || 'Loading...'}
+          </h3>
+          <h3>
+              Test Time: {Utils.toLocalTime(scanData.start_time) || 'Loading...'}
+          </h3>
+          <h3>
+              Test Duration: {Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' || 'Loading...'}
+          </h3>
+          <h3>
+              Score: {scanData.score + '/100' || 'Loading...'}
+          </h3>
+          <h3>
+              Tests Passed: {scanData.tests_passed + '/' + scanData.tests_quantity || 'Loading...'}
           </h3>
         </Section>
         <Section heading="Test Scores" id="test-scores">
           <h2>
-              (Dummy)Current Host: {currentHost}
+              (Dummy){currentHost}
           </h2>
           <h3>
               (Dummy)Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
