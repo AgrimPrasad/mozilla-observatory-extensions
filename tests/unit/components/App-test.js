@@ -3,6 +3,7 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme'
 import { shallow, render } from 'enzyme';
 
+import * as Utils from 'Utils/utils';
 import sampleScan from 'Tests/data/scan';
 
 chai.use(chaiEnzyme());
@@ -72,20 +73,77 @@ describe("<App />", function() {
     expect(wrapper.find("#scan-summary").find('h2').text()).to.contain('Loading...');
 
     const hostText = `${mockHost}`;
-    const nextWrapper = render(<App {...mockState} />);
-    expect(nextWrapper.find("#scan-summary").find('h2').text()).to.contain(hostText);
+    const mockWrapper = render(<App {...mockState} />);
+    expect(mockWrapper.find("#scan-summary").find('h2').text()).to.contain(hostText);
   });
 
-  it('should contain current scan_id if present', () => {
+  it('should contain current grade if present', () => {
     const wrapper = render(<App {...defaultProps} />);
-    expect(wrapper.find("#scan-summary").find('h3').text()).to.contain('Loading...');
+    expect(wrapper.find("#scan-summary").find('#grade').text()).to.contain('Loading...');
+
+    const grade = sampleScan['grade'];
+    const scanIdText = `Grade: ${grade}`;
+    const mockWrapper = render(<App {...mockState} />);
+
+    expect(mockWrapper.find("#scan-summary").find('#grade').text()).to.contain(scanIdText);
+  });
+
+  it('should contain current Scan ID if present', () => {
+    const wrapper = render(<App {...defaultProps} />);
+    expect(wrapper.find("#scan-summary").find('#scan-id').text()).to.contain('Loading...');
 
     const scanId = sampleScan['scan_id'];
-    const scanIdText = `Scan Result: ${scanId}`;
-    const nextWrapper = render(<App {...mockState} />);
+    const scanIdText = `Scan ID #: ${scanId}`;
+    const mockWrapper = render(<App {...mockState} />);
 
-    // TODO enable correct tests later
-    // expect(nextWrapper.find("#scan-summary").find('h3').text()).to.contain(scanIdText);
+    expect(mockWrapper.find("#scan-summary").find('#scan-id').text()).to.contain(scanIdText);
   });
+
+  it('should contain current Test Time if present', () => {
+    const wrapper = render(<App {...defaultProps} />);
+    expect(wrapper.find("#scan-summary").find('#test-time').text()).to.contain('Loading...');
+
+    const testTime = sampleScan['start_time'];
+    const scanIdText = `Test Time: ${Utils.toLocalTime(testTime)}`;
+    const mockWrapper = render(<App {...mockState} />);
+
+    expect(mockWrapper.find("#scan-summary").find('#test-time').text()).to.contain(scanIdText);
+  });
+
+  it('should contain current Test Duration if present', () => {
+    const wrapper = render(<App {...defaultProps} />);
+    expect(wrapper.find("#scan-summary").find('#test-duration').text()).to.contain('Loading...');
+
+    const startTime = sampleScan['start_time'];
+    const endTime = sampleScan['end_time'];
+    const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
+    const mockWrapper = render(<App {...mockState} />);
+
+    expect(mockWrapper.find("#scan-summary").find('#test-duration').text()).to.contain(scanIdText);
+  });
+
+  // it('should contain current Score if present', () => {
+  //   const wrapper = render(<App {...defaultProps} />);
+  //   expect(wrapper.find("#scan-summary").find('#testDuration').text()).to.contain('Loading...');
+
+  //   const startTime = sampleScan['start_time'];
+  //   const endTime = sampleScan['end_time'];
+  //   const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
+  //   const mockWrapper = render(<App {...mockState} />);
+
+  //   expect(mockWrapper.find("#scan-summary").find('#testDuration').text()).to.contain(scanIdText);
+  // });
+
+  // it('should contain current Tests Passed if present', () => {
+  //   const wrapper = render(<App {...defaultProps} />);
+  //   expect(wrapper.find("#scan-summary").find('#testDuration').text()).to.contain('Loading...');
+
+  //   const startTime = sampleScan['start_time'];
+  //   const endTime = sampleScan['end_time'];
+  //   const scanIdText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
+  //   const mockWrapper = render(<App {...mockState} />);
+
+  //   expect(mockWrapper.find("#scan-summary").find('#testDuration').text()).to.contain(scanIdText);
+  // });
 
 });

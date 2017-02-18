@@ -36723,6 +36723,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var enums = {
+  characterMappings: {
+    checkmark: '&#x2713;',
+    latini: '&#x1d5a8',
+    uparrow: '&#x2b06;',
+    xmark: '&#x2717;'
+  },
   grades: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'],
   maxQueriesBeforeTimeout: 600,
   urls: {
@@ -36895,13 +36901,15 @@ var App = function (_Component) {
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'grade' },
             'Grade: ',
-            scanData.grade || 'Loading...'
+            scanData.grade || 'Loading...',
+            ' ',
+            scanData.hidden ? '(unlisted)' : ''
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'scan-id' },
             'Scan ID ',
             '#',
             ': ',
@@ -36909,25 +36917,25 @@ var App = function (_Component) {
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'test-time' },
             'Test Time: ',
-            Utils.toLocalTime(scanData.start_time) || 'Loading...'
+            scanData.start_time ? Utils.toLocalTime(scanData.start_time) : 'Loading...'
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'test-duration' },
             'Test Duration: ',
-            Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' || 'Loading...'
+            scanData.start_time ? Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' : 'Loading...'
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'score' },
             'Score: ',
             scanData.score + '/100' || 'Loading...'
           ),
           _react2.default.createElement(
             'h3',
-            null,
+            { id: 'tests-passed' },
             'Tests Passed: ',
             scanData.tests_passed + '/' + scanData.tests_quantity || 'Loading...'
           )

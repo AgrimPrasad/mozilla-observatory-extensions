@@ -24,22 +24,24 @@ class App extends Component {
           <h2>
               {currentHost || 'Loading...'}
           </h2>
-          <h3>
-              Grade: {scanData.grade || 'Loading...'}
+          <h3 id="grade">
+              Grade: {scanData.grade || 'Loading...'} {scanData.hidden ? '(unlisted)' : ''}
           </h3>
-          <h3>
+          <h3 id="scan-id">
               Scan ID {'#'}: {scanData.scan_id || 'Loading...'}
           </h3>
-          <h3>
-              Test Time: {Utils.toLocalTime(scanData.start_time) || 'Loading...'}
+          <h3 id="test-time">
+              Test Time: {scanData.start_time ? Utils.toLocalTime(scanData.start_time) : 'Loading...'}
           </h3>
-          <h3>
-              Test Duration: {Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' || 'Loading...'}
+          <h3 id="test-duration">
+              Test Duration: {scanData.start_time ? 
+                              Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds' 
+                              : 'Loading...'}
           </h3>
-          <h3>
+          <h3 id="score">
               Score: {scanData.score + '/100' || 'Loading...'}
           </h3>
-          <h3>
+          <h3 id="tests-passed">
               Tests Passed: {scanData.tests_passed + '/' + scanData.tests_quantity || 'Loading...'}
           </h3>
         </Section>
