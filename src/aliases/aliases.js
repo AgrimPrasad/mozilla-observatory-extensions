@@ -73,7 +73,12 @@ const hostChanged = (currentHost, method=enums.urls.methods.GET) => (dispatch) =
       }
 
       // TODO Create and update an ERROR state for display to user
-    } else {
+    }
+    else if (scan.state != 'FINISHED') {
+      setTimeout(dispatch(hostChanged(currentHost, enums.urls.methods.GET))
+        , 1000);
+    }
+    else {
       dispatch(updateScan(currentHost, scan));
     }
   })
