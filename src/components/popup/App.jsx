@@ -34,35 +34,41 @@ class App extends Component {
         {dataReady &&
           <Grid>
             <Row className="show-grid">
-              <Col xs={12} md={8} className="h3" id="host">
+              <Col xs={11} xsOffset={1} className="h4" id="host">
                 {currentHost}
               </Col>
             </Row>
             <Section heading="Scan Summary" id="scan-summary">
-              <div id="grade">
-                <span className='h5'>Grade: </span>
-                {scanData.grade} {scanData.hidden ? '(unlisted)' : ''}
-              </div>
-              <div id="scan-id">
-                <span className='h5'>Scan ID {'#'}: </span>
-                {scanData.scan_id}
-              </div>
-              <div id="test-time">
-                <span className='h5'>Test Time: </span>
-                {Utils.toLocalTime(scanData.start_time)}
-              </div>
-              <div id="test-duration">
-                <span className='h5'>Test Duration: </span>
-                {Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'}
-              </div>
-              <div id="score">
-                <span className='h5'>Score: </span>
-                {scanData.score  + '/100'}
-              </div>
-              <div id="tests-passed">
-                <span className='h5'>Tests Passed: </span>
-                {scanData.tests_passed + '/' + scanData.tests_quantity}
-              </div>
+              <Grid>
+                <Row id="grade">
+                  <span className={`grade-container text-center grade-${scanData.grade.charAt(0).toLowerCase()}`} id="scan-grade-container">
+                      <span className="grade-letter" id="scan-grade-letter">{scanData.grade.charAt(0)}</span>
+                      <sup className="grade-letter-modifier" id="scan-grade-modifier">{scanData.grade.charAt(1) || ''}</sup>
+                  </span>
+                  <span className='h5'>Grade: </span>
+                  {scanData.grade} {scanData.hidden ? '(unlisted)' : ''}
+                </Row>
+                <Row id="scan-id">
+                  <span className='h5'>Scan ID {'#'}: </span>
+                  {scanData.scan_id}
+                </Row>
+                <Row id="test-time">
+                  <span className='h5'>Test Time: </span>
+                  {Utils.toLocalTime(scanData.start_time)}
+                </Row>
+                <Row id="test-duration">
+                  <span className='h5'>Test Duration: </span>
+                  {Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'}
+                </Row>
+                <Row id="score">
+                  <span className='h5'>Score: </span>
+                  {scanData.score  + '/100'}
+                </Row>
+                <Row id="tests-passed">
+                  <span className='h5'>Tests Passed: </span>
+                  {scanData.tests_passed + '/' + scanData.tests_quantity}
+                </Row>
+              </Grid>
             </Section>
             <Section heading="Test Scores" id="test-scores">
               <h3>

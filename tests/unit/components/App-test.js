@@ -122,7 +122,7 @@ describe("<App />", function() {
 
     const startTime = sampleScan['start_time'];
     const endTime = sampleScan['end_time'];
-    const expectedText = `Test Duration: ${Utils.calcDuration(startTime, endTime)}`;
+    const expectedText = 'Test Duration: 2 seconds';
     const mockWrapper = render(<App {...mockState} />);
 
     expect(mockWrapper.find("#scan-summary").find('#test-duration').text()).to.contain(expectedText);

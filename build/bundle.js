@@ -36912,7 +36912,7 @@ var App = function (_Component) {
             { className: 'show-grid' },
             _react2.default.createElement(
               _reactBootstrap.Col,
-              { xs: 12, md: 8, className: 'h3', id: 'host' },
+              { xs: 11, xsOffset: 1, className: 'h4', id: 'host' },
               currentHost
             )
           ),
@@ -36920,68 +36920,86 @@ var App = function (_Component) {
             _Section2.default,
             { heading: 'Scan Summary', id: 'scan-summary' },
             _react2.default.createElement(
-              'div',
-              { id: 'grade' },
+              _reactBootstrap.Grid,
+              null,
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Grade: '
+                _reactBootstrap.Row,
+                { id: 'grade' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'grade-container text-center grade-' + scanData.grade.charAt(0).toLowerCase(), id: 'scan-grade-container' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'grade-letter', id: 'scan-grade-letter' },
+                    scanData.grade.charAt(0)
+                  ),
+                  _react2.default.createElement(
+                    'sup',
+                    { className: 'grade-letter-modifier', id: 'scan-grade-modifier' },
+                    scanData.grade.charAt(1) || ''
+                  )
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Grade: '
+                ),
+                scanData.grade,
+                ' ',
+                scanData.hidden ? '(unlisted)' : ''
               ),
-              scanData.grade,
-              ' ',
-              scanData.hidden ? '(unlisted)' : ''
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'scan-id' },
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Scan ID ',
-                '#',
-                ': '
+                _reactBootstrap.Row,
+                { id: 'scan-id' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Scan ID ',
+                  '#',
+                  ': '
+                ),
+                scanData.scan_id
               ),
-              scanData.scan_id
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'test-time' },
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Test Time: '
+                _reactBootstrap.Row,
+                { id: 'test-time' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Test Time: '
+                ),
+                Utils.toLocalTime(scanData.start_time)
               ),
-              Utils.toLocalTime(scanData.start_time)
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'test-duration' },
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Test Duration: '
+                _reactBootstrap.Row,
+                { id: 'test-duration' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Test Duration: '
+                ),
+                Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'
               ),
-              Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'score' },
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Score: '
+                _reactBootstrap.Row,
+                { id: 'score' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Score: '
+                ),
+                scanData.score + '/100'
               ),
-              scanData.score + '/100'
-            ),
-            _react2.default.createElement(
-              'div',
-              { id: 'tests-passed' },
               _react2.default.createElement(
-                'span',
-                { className: 'h5' },
-                'Tests Passed: '
-              ),
-              scanData.tests_passed + '/' + scanData.tests_quantity
+                _reactBootstrap.Row,
+                { id: 'tests-passed' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'h5' },
+                  'Tests Passed: '
+                ),
+                scanData.tests_passed + '/' + scanData.tests_quantity
+              )
             )
           ),
           _react2.default.createElement(
