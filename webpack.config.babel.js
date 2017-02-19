@@ -1,4 +1,5 @@
 import path from 'path';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 module.exports = {
   entry: [
@@ -46,4 +47,30 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new CopyWebpackPlugin([
+        { 
+          from: './src/components/popup/index.html',
+          to: './popup.html' 
+        },
+        { 
+          from: './manifest.json'
+        },
+        { 
+          from: './src/styles/*.css',
+          flatten: true
+        },
+        { 
+          from: './src/img/*',
+          flatten: true
+        },
+        { 
+          from: './lib/*',
+          flatten: true
+        },
+      ])
+  ],
+
+  stats: "minimal",
 };

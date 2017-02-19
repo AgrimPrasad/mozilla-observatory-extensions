@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 
 import Heading from './Heading';
 import Section from './Section';
@@ -32,12 +32,12 @@ class App extends Component {
           <ProgressBar id="scan-progress" active label="Loading" striped="true" now={100} />
         }
         {dataReady &&
-          <div className="container">
-            <div className="row">
-              <div className="h4 col-md-8 col-md-offset-4" id="host">
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={12} md={8} className="h3" id="host">
                 {currentHost}
-              </div>
-            </div>
+              </Col>
+            </Row>
             <Section heading="Scan Summary" id="scan-summary">
               <div id="grade">
                 <span className='h5'>Grade: </span>
@@ -72,7 +72,7 @@ class App extends Component {
                   (Dummy)Scan Result: {currentHost in scanForHost ? scanForHost[currentHost].scan_id : 'Loading...'}
               
             </Section>
-          </div>
+          </Grid>
         }
       </div>
     );

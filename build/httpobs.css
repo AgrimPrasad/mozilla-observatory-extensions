@@ -1,5 +1,6 @@
 body {
     line-height: 1.5em;
+    min-width: 19em;
     max-width: 19em;
 }
 
