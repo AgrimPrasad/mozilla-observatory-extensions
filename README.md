@@ -1,6 +1,14 @@
 # mozilla-observatory-extensions
 Browser extensions to analyze website security using the [Mozilla HTTP Observatory API](https://observatory.mozilla.org)
 
+## Get Started
+Clone this repository and then run the following commands which will generate unzipped extension files in the `build/`directory using webpack which you can then load into your browser such as Chrome.
+
+````
+npm install && npm update
+npm run bundle
+````
+
 ## Project Goals
 1. Browser extension which performs the following actions:
   * **Extension Options page**: `hidden` setting to "true" will hide a scan from public results returned by getRecentScans. `rescan` setting to "true" forces a rescan of a site (Note: a site can not be scanned at a frequency greater than every three minutes)
