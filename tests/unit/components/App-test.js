@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme'
 import { shallow, render } from 'enzyme';
 
-import * as Utils from 'Utils/utils';
+import * as Utils from 'Utils';
 import sampleScan from 'Tests/data/scan';
 
 chai.use(chaiEnzyme());

@@ -26,7 +26,8 @@ module.exports = {
       Styles: path.resolve(__dirname, 'src/styles/'),
       Lib: path.resolve(__dirname, 'lib/'),
       Tests: path.resolve(__dirname, 'tests/'),
-      Utils: path.resolve(__dirname, 'src/utils/')
+      Utils: path.resolve(__dirname, 'src/utils/'),
+      Constants: path.resolve(__dirname, 'src/constants/')
     },
   },
 

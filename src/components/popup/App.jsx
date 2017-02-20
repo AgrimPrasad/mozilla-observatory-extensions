@@ -6,7 +6,7 @@ import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 import Heading from './Heading';
 import Section from './Section';
 import * as actionCreators from 'Actions/actionCreators';
-import * as Utils from 'Utils/utils';
+import * as utils from 'Utils';
 
 class App extends Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class App extends Component {
       <div>
         <Heading />
         {!dataReady &&
-          <ProgressBar id="scan-progress" active label="Loading" striped="true" now={100} />
+          <ProgressBar id="scan-progress" active label="Loading" striped now={100} />
         }
         {dataReady &&
           <Grid>
@@ -52,19 +52,21 @@ class App extends Component {
                 </Row>
                 <Row id="test-time">
                   <span className='h5'>Test Time: </span>
-                  {Utils.toLocalTime(scanData.start_time)}
+                  {utils.toLocalTime(scanData.start_time)}
                 </Row>
                 <Row id="test-duration">
                   <span className='h5'>Test Duration: </span>
-                  {Utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'}
+                  {utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'}
                 </Row>
                 <Row id="score">
                   <span className='h5'>Score: </span>
-                  {scanData.score  + '/100'}
+                  <ProgressBar className={`now-${scanData.score}`} bsStyle={utils.scoreStyleMap(scanData.score)}
+                              label={`${scanData.score}/100`} now={scanData.score} />
                 </Row>
                 <Row id="tests-passed">
                   <span className='h5'>Tests Passed: </span>
-                  {scanData.tests_passed + '/' + scanData.tests_quantity}
+                  <ProgressBar bsStyle={utils.passedTestsStyleMap(scanData.tests_passed)}
+                              label={`${scanData.tests_passed}/${scanData.tests_quantity}`} now={100*scanData.tests_passed/scanData.tests_quantity} />
                 </Row>
               </Grid>
             </Section>
