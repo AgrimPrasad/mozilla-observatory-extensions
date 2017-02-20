@@ -1,12 +1,12 @@
 body {
     line-height: 1.5em;
-    min-width: 19em;
-    max-width: 19em;
+    min-width: 20em;
+    max-width: 20em;
 }
 
-.panel-body {
+/*.panel-body {
     padding: 2em;
-}
+}*/
 
 .no-margin-top {
     margin-top: 0;
@@ -69,21 +69,25 @@ body {
 
 /* grades */
 .grade-container {
-    border-radius: 12px;
+    border-radius: 8px;
     color: #ffffff;
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 88px;
-    height: 128px;
-    line-height: 116px; /* height - total border */
-    padding-right: 4px;
-    width: 128px;
+    font-size: 59px;
+    height: 85px;
+    line-height: 77px; /* height - total border */
+    padding-right: 5px;
+    width: 85px;
 }
 .grade-container sup {
     float: right;
-    font-size: 52px;
+    font-size: 35px;
     position: relative;
-    top: 32px;
+    top: -63px;
+}
+
+#grade {
+    margin-bottom: 1em;
 }
 
 .grade-a {

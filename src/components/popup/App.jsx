@@ -34,19 +34,17 @@ class App extends Component {
         {dataReady &&
           <Grid>
             <Row className="show-grid">
-              <Col xs={11} xsOffset={1} className="h4" id="host">
+              <Col xs={11} className="h4" id="host">
                 {currentHost}
               </Col>
             </Row>
             <Section heading="Scan Summary" id="scan-summary">
               <Grid>
                 <Row id="grade">
-                  <span className={`grade-container text-center grade-${scanData.grade.charAt(0).toLowerCase()}`} id="scan-grade-container">
+                  <Col xs={4} className={`grade-container grade-${scanData.grade.charAt(0).toLowerCase()}`} id="scan-grade-container">
                       <span className="grade-letter" id="scan-grade-letter">{scanData.grade.charAt(0)}</span>
                       <sup className="grade-letter-modifier" id="scan-grade-modifier">{scanData.grade.charAt(1) || ''}</sup>
-                  </span>
-                  <span className='h5'>Grade: </span>
-                  {scanData.grade} {scanData.hidden ? '(unlisted)' : ''}
+                  </Col>
                 </Row>
                 <Row id="scan-id">
                   <span className='h5'>Scan ID {'#'}: </span>

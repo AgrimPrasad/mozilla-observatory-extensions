@@ -2,7 +2,7 @@ import moment from 'moment';
 
 export const toLocalTime = (timeString, format) => {
 	const localtime = moment.utc(timeString, format).toDate();
-	return moment(localtime).format('LLL');
+	return moment(localtime).format('MMM Do YY, h:mm:ss a');
 };
 
 export const calcDuration =  (startTime, endTime) => {

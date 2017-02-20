@@ -88,7 +88,7 @@ describe("<App />", function() {
     expect(wrapper.find("#scan-summary").find('#grade').text()).to.contain('');
 
     const grade = sampleScan['grade'];
-    const expectedText = `Grade: ${grade}`;
+    const expectedText = grade;
     const mockWrapper = render(<App {...mockState} />);
 
     expect(mockWrapper.find("#scan-summary").find('#grade').text()).to.contain(expectedText);

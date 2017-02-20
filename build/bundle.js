@@ -36912,7 +36912,7 @@ var App = function (_Component) {
             { className: 'show-grid' },
             _react2.default.createElement(
               _reactBootstrap.Col,
-              { xs: 11, xsOffset: 1, className: 'h4', id: 'host' },
+              { xs: 11, className: 'h4', id: 'host' },
               currentHost
             )
           ),
@@ -36926,8 +36926,8 @@ var App = function (_Component) {
                 _reactBootstrap.Row,
                 { id: 'grade' },
                 _react2.default.createElement(
-                  'span',
-                  { className: 'grade-container text-center grade-' + scanData.grade.charAt(0).toLowerCase(), id: 'scan-grade-container' },
+                  _reactBootstrap.Col,
+                  { xs: 4, className: 'grade-container grade-' + scanData.grade.charAt(0).toLowerCase(), id: 'scan-grade-container' },
                   _react2.default.createElement(
                     'span',
                     { className: 'grade-letter', id: 'scan-grade-letter' },
@@ -36938,15 +36938,7 @@ var App = function (_Component) {
                     { className: 'grade-letter-modifier', id: 'scan-grade-modifier' },
                     scanData.grade.charAt(1) || ''
                   )
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'h5' },
-                  'Grade: '
-                ),
-                scanData.grade,
-                ' ',
-                scanData.hidden ? '(unlisted)' : ''
+                )
               ),
               _react2.default.createElement(
                 _reactBootstrap.Row,
@@ -37335,7 +37327,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var toLocalTime = exports.toLocalTime = function toLocalTime(timeString, format) {
 	var localtime = _moment2.default.utc(timeString, format).toDate();
-	return (0, _moment2.default)(localtime).format('LLL');
+	return (0, _moment2.default)(localtime).format('MMM Do YY, h:mm:ss a');
 };
 
 var calcDuration = exports.calcDuration = function calcDuration(startTime, endTime) {
