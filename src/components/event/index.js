@@ -5,7 +5,7 @@ import createLogger from 'redux-logger';
 
 import rootReducer from 'Reducers';
 import actionTypes from 'Actions/actionTypes';
-import aliases from 'Aliases/aliases';
+import aliases from 'Aliases';
 
 const loggerMiddleware = createLogger();
 const preloadedState = {};

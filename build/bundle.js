@@ -36598,15 +36598,15 @@ var _actionTypes = __webpack_require__(95);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
-var _aliases = __webpack_require__(460);
+var _Aliases = __webpack_require__(460);
 
-var _aliases2 = _interopRequireDefault(_aliases);
+var _Aliases2 = _interopRequireDefault(_Aliases);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var loggerMiddleware = (0, _reduxLogger2.default)();
 var preloadedState = {};
-var enhancer = (0, _redux.applyMiddleware)((0, _reactChromeRedux.alias)(_aliases2.default), _reduxThunk2.default, loggerMiddleware);
+var enhancer = (0, _redux.applyMiddleware)((0, _reactChromeRedux.alias)(_Aliases2.default), _reduxThunk2.default, loggerMiddleware);
 var store = (0, _redux.createStore)(_Reducers2.default, preloadedState, enhancer);
 
 (0, _reactChromeRedux.wrapStore)(store, {
@@ -36837,7 +36837,9 @@ var hostChanged = function hostChanged(currentHost) {
 
         // TODO Create and update an ERROR state for display to user
       } else if (scan.state != 'FINISHED') {
-        setTimeout(dispatch(hostChanged(currentHost, constants.urls.methods.GET)), 1000);
+        setTimeout(function () {
+          dispatch(hostChanged(currentHost, constants.urls.methods.GET));
+        }, 1000);
       } else {
         dispatch(updateScan(currentHost, scan));
       }
