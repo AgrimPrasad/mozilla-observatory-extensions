@@ -159,6 +159,7 @@ body {
 
 .now-0 .progress-bar {
     color: #d9534f;
+    font-weight: bold;
 }
 
 .margin-bottom {

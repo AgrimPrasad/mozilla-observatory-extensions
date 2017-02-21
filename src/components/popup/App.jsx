@@ -5,6 +5,7 @@ import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 
 import Heading from './Heading';
 import Section from './Section';
+import Summary from './Summary';
 import * as actionCreators from 'Actions/actionCreators';
 import * as utils from 'Utils';
 
@@ -39,36 +40,7 @@ class App extends Component {
               </Col>
             </Row>
             <Section heading="Scan Summary" id="scan-summary">
-              <Grid>
-                <Row id="grade">
-                  <Col xs={4} className={`grade-container grade-${scanData.grade.charAt(0).toLowerCase()}`} id="scan-grade-container">
-                      <span className="grade-letter" id="scan-grade-letter">{scanData.grade.charAt(0)}</span>
-                      <sup className="grade-letter-modifier" id="scan-grade-modifier">{scanData.grade.charAt(1) || ''}</sup>
-                  </Col>
-                </Row>
-                <Row id="scan-id">
-                  <span className='h5'>Scan ID {'#'}: </span>
-                  {scanData.scan_id}
-                </Row>
-                <Row id="test-time">
-                  <span className='h5'>Test Time: </span>
-                  {utils.toLocalTime(scanData.start_time)}
-                </Row>
-                <Row id="test-duration">
-                  <span className='h5'>Test Duration: </span>
-                  {utils.calcDuration(scanData.start_time, scanData.end_time) + ' seconds'}
-                </Row>
-                <Row id="score">
-                  <span className='h5'>Score: </span>
-                  <ProgressBar className={`now-${scanData.score}`} bsStyle={utils.scoreStyleMap(scanData.score)}
-                              label={`${scanData.score}/100`} now={scanData.score} />
-                </Row>
-                <Row id="tests-passed">
-                  <span className='h5'>Tests Passed: </span>
-                  <ProgressBar bsStyle={utils.passedTestsStyleMap(scanData.tests_passed)}
-                              label={`${scanData.tests_passed}/${scanData.tests_quantity}`} now={100*scanData.tests_passed/scanData.tests_quantity} />
-                </Row>
-              </Grid>
+              <Summary scanData={scanData} />
             </Section>
             <Section heading="Test Scores" id="test-scores">
               <h3>
