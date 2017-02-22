@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     const currentHost = this.props.currentHost;
-    const scanForHost = this.props.scanForHost || {};
+    const scanForHost = this.props.scanForHost;
     const scanData = scanForHost[currentHost] || {};
     const dataReady = this.isDataReady(scanData);
 

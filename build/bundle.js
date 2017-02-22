@@ -36940,7 +36940,7 @@ var App = function (_Component) {
     key: 'render',
     value: function render() {
       var currentHost = this.props.currentHost;
-      var scanForHost = this.props.scanForHost || {};
+      var scanForHost = this.props.scanForHost;
       var scanData = scanForHost[currentHost] || {};
       var dataReady = this.isDataReady(scanData);
 
@@ -37204,82 +37204,86 @@ var ScanSummary = function (_Component) {
           tests_passed = _props$scanData.tests_passed,
           tests_quantity = _props$scanData.tests_quantity;
 
-      return _react2.default.createElement(
-        _reactBootstrap.Grid,
-        null,
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'grade' },
+      if (typeof grade === 'undefined') {
+        return _react2.default.createElement(_reactBootstrap.Grid, null);
+      } else {
+        return _react2.default.createElement(
+          _reactBootstrap.Grid,
+          null,
           _react2.default.createElement(
-            _reactBootstrap.Col,
-            { xs: 4, className: 'grade-container grade-' + grade.charAt(0).toLowerCase(), id: 'scan-grade-container' },
+            _reactBootstrap.Row,
+            { id: 'grade' },
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              { xs: 4, className: 'grade-container grade-' + grade.charAt(0).toLowerCase(), id: 'scan-grade-container' },
+              _react2.default.createElement(
+                'span',
+                { className: 'grade-letter', id: 'scan-grade-letter' },
+                grade.charAt(0)
+              ),
+              _react2.default.createElement(
+                'sup',
+                { className: 'grade-letter-modifier', id: 'scan-grade-modifier' },
+                grade.charAt(1) || ''
+              )
+            )
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            { id: 'scan-id' },
             _react2.default.createElement(
               'span',
-              { className: 'grade-letter', id: 'scan-grade-letter' },
-              grade.charAt(0)
+              { className: 'h5' },
+              'Scan ID ',
+              '#',
+              ': '
             ),
+            scan_id
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            { id: 'test-time' },
             _react2.default.createElement(
-              'sup',
-              { className: 'grade-letter-modifier', id: 'scan-grade-modifier' },
-              grade.charAt(1) || ''
-            )
+              'span',
+              { className: 'h5' },
+              'Test Time: '
+            ),
+            utils.toLocalTime(start_time)
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            { id: 'test-duration' },
+            _react2.default.createElement(
+              'span',
+              { className: 'h5' },
+              'Test Duration: '
+            ),
+            utils.calcDuration(start_time, end_time) + ' seconds'
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            { id: 'score' },
+            _react2.default.createElement(
+              'span',
+              { className: 'h5' },
+              'Score: '
+            ),
+            _react2.default.createElement(_reactBootstrap.ProgressBar, { className: 'now-' + score, bsStyle: utils.scoreStyleMap(score),
+              label: score + '/100', now: score })
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            { id: 'tests-passed' },
+            _react2.default.createElement(
+              'span',
+              { className: 'h5' },
+              'Tests Passed: '
+            ),
+            _react2.default.createElement(_reactBootstrap.ProgressBar, { bsStyle: utils.passedTestsStyleMap(tests_passed),
+              label: tests_passed + '/' + tests_quantity, now: 100 * tests_passed / tests_quantity })
           )
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'scan-id' },
-          _react2.default.createElement(
-            'span',
-            { className: 'h5' },
-            'Scan ID ',
-            '#',
-            ': '
-          ),
-          scan_id
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'test-time' },
-          _react2.default.createElement(
-            'span',
-            { className: 'h5' },
-            'Test Time: '
-          ),
-          utils.toLocalTime(start_time)
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'test-duration' },
-          _react2.default.createElement(
-            'span',
-            { className: 'h5' },
-            'Test Duration: '
-          ),
-          utils.calcDuration(start_time, end_time) + ' seconds'
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'score' },
-          _react2.default.createElement(
-            'span',
-            { className: 'h5' },
-            'Score: '
-          ),
-          _react2.default.createElement(_reactBootstrap.ProgressBar, { className: 'now-' + score, bsStyle: utils.scoreStyleMap(score),
-            label: score + '/100', now: score })
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Row,
-          { id: 'tests-passed' },
-          _react2.default.createElement(
-            'span',
-            { className: 'h5' },
-            'Tests Passed: '
-          ),
-          _react2.default.createElement(_reactBootstrap.ProgressBar, { bsStyle: utils.passedTestsStyleMap(tests_passed),
-            label: tests_passed + '/' + tests_quantity, now: 100 * tests_passed / tests_quantity })
-        )
-      );
+        );
+      }
     }
   }]);
 
